@@ -1,531 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="BLACKSITE — Input an idea. Output a deployed company." />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="BLACKSITE — Input an idea. Output a deployed company."/>
   <title>BLACKSITE.BOND</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23000'/%3E%3Crect x='1.5' y='1.5' width='37' height='37' fill='none' stroke='%23fff' stroke-width='0.75'/%3E%3Cline x1='1.5' y1='8' x2='1.5' y2='1.5' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='1.5' y1='1.5' x2='8' y2='1.5' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='32' y1='1.5' x2='38.5' y2='1.5' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='38.5' y1='1.5' x2='38.5' y2='8' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='1.5' y1='32' x2='1.5' y2='38.5' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='1.5' y1='38.5' x2='8' y2='38.5' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='38.5' y1='32' x2='38.5' y2='38.5' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='32' y1='38.5' x2='38.5' y2='38.5' stroke='%23fff' stroke-width='1.5'/%3E%3Crect x='10' y='9' width='5' height='22' fill='%23fff'/%3E%3Crect x='15' y='9' width='14' height='9' fill='%23fff'/%3E%3Crect x='15' y='22' width='14' height='9' fill='%23fff'/%3E%3Cline x1='29' y1='18' x2='15' y2='22' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23000'/%3E%3Crect x='1.5' y='1.5' width='37' height='37' fill='none' stroke='%23fff' stroke-width='0.75'/%3E%3Cline x1='1.5' y1='8' x2='1.5' y2='1.5' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='1.5' y1='1.5' x2='8' y2='1.5' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='32' y1='1.5' x2='38.5' y2='1.5' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='38.5' y1='1.5' x2='38.5' y2='8' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='1.5' y1='32' x2='1.5' y2='38.5' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='1.5' y1='38.5' x2='8' y2='38.5' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='38.5' y1='32' x2='38.5' y2='38.5' stroke='%23fff' stroke-width='1.5'/%3E%3Cline x1='32' y1='38.5' x2='38.5' y2='38.5' stroke='%23fff' stroke-width='1.5'/%3E%3Crect x='10' y='9' width='5' height='22' fill='%23fff'/%3E%3Crect x='15' y='9' width='14' height='9' fill='%23fff'/%3E%3Crect x='15' y='22' width='14' height='9' fill='%23fff'/%3E%3Cline x1='29' y1='18' x2='15' y2='22' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E"/>
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --black: #000;
-      --white: #fff;
-      --dim: rgba(255,255,255,0.4);
-      --muted: rgba(255,255,255,0.18);
-      --faint: rgba(255,255,255,0.04);
-      --line: rgba(255,255,255,0.09);
-      --line-bright: rgba(255,255,255,0.15);
-      --font: 'Space Grotesk', sans-serif;
-      --mono: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
-      --bar-h: 36px;
-      --nav-h: 56px;
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --black:#000;--white:#fff;
+      --dim:rgba(255,255,255,0.4);
+      --muted:rgba(255,255,255,0.15);
+      --line:rgba(255,255,255,0.08);
+      --font:'Space Grotesk',sans-serif;
+      --mono:'SF Mono','Fira Code',monospace;
+      --bar:32px; --nav:52px;
     }
+    html{scroll-behavior:smooth}
+    body{background:var(--black);color:var(--white);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    ::selection{background:var(--white);color:var(--black)}
+    a{color:inherit;text-decoration:none}
 
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--black); color: var(--white);
-      font-family: var(--font); -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+    /* ── TICKER BAR (top) ── */
+    .ticker-bar{
+      position:fixed;top:0;left:0;right:0;z-index:400;
+      height:var(--bar);background:var(--white);color:var(--black);
+      display:flex;align-items:center;overflow:hidden;
     }
-    ::selection { background: var(--white); color: var(--black); }
-    a { color: inherit; text-decoration: none; }
+    .ticker-fixed{
+      flex-shrink:0;padding:0 1rem;height:100%;display:flex;align-items:center;
+      gap:0.5rem;border-right:1px solid rgba(0,0,0,0.12);
+      font-family:var(--mono);font-size:0.45rem;letter-spacing:0.18em;text-transform:uppercase;
+      white-space:nowrap;font-weight:700;
+    }
+    .ticker-dot{width:5px;height:5px;background:var(--black);border-radius:50%;animation:tdot 1.4s ease-in-out infinite;flex-shrink:0}
+    .ticker-scroll{flex:1;overflow:hidden;display:flex;align-items:center}
+    .ticker-track{
+      display:flex;gap:3.5rem;padding:0 1.5rem;
+      white-space:nowrap;
+      font-family:var(--mono);font-size:0.45rem;letter-spacing:0.16em;text-transform:uppercase;
+      animation:tickerMove 22s linear infinite;
+    }
+    .ticker-track a{color:var(--black);display:inline-flex;align-items:center;gap:0.375rem;transition:opacity .2s}
+    .ticker-track a:hover{opacity:.55}
+    .ticker-track span{opacity:.45}
+    .t-xi{width:11px;height:11px;flex-shrink:0}
 
-    /* noise texture overlay */
-    body::after {
-      content: '';
-      position: fixed; inset: 0; pointer-events: none; z-index: 999;
-      opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 256px 256px;
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:var(--bar);left:0;right:0;z-index:300;
+      height:var(--nav);padding:0 1.25rem;
+      display:flex;align-items:center;justify-content:space-between;
+      border-bottom:1px solid transparent;
+      transition:background .3s,border-color .3s;
     }
+    @media(min-width:640px){nav{padding:0 2rem}}
+    nav.scrolled{background:rgba(0,0,0,0.97);backdrop-filter:blur(20px);border-color:var(--line)}
 
-    /* ─── ANNOUNCEMENT BAR ─── */
-    .ann-bar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
-      height: var(--bar-h);
-      background: var(--white); color: var(--black);
-      display: flex; align-items: center; justify-content: center;
-      gap: 1rem; overflow: hidden;
-    }
-    .ann-inner {
-      display: flex; align-items: center; gap: 1rem;
-      font-family: var(--mono); font-size: 0.5rem; font-weight: 600;
-      letter-spacing: 0.22em; text-transform: uppercase;
-    }
-    .ann-dot {
-      width: 6px; height: 6px; background: var(--black);
-      border-radius: 50%; animation: annPulse 1.4s ease-in-out infinite;
-      flex-shrink: 0;
-    }
-    .ann-link {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      color: var(--black); transition: opacity 0.2s;
-    }
-    .ann-link:hover { opacity: 0.65; }
-    .ann-sep { opacity: 0.3; }
-    .ann-x-icon { width: 14px; height: 14px; }
+    .nav-brand{display:flex;align-items:center;gap:0.625rem}
+    .nav-word{font-size:0.75rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase}
 
-    /* ─── NAV ─── */
-    nav {
-      position: fixed; top: var(--bar-h); left: 0; right: 0; z-index: 200;
-      height: var(--nav-h); padding: 0 1.25rem;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background 0.35s ease, border-color 0.35s ease;
-      border-bottom: 1px solid transparent;
+    .nav-links{display:none;align-items:center;gap:2rem}
+    @media(min-width:640px){.nav-links{display:flex}}
+    .nav-links a{font-size:0.625rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);transition:color .2s}
+    .nav-links a:hover{color:var(--white)}
+
+    .nav-end{display:flex;align-items:center;gap:1rem}
+    .nav-cta{
+      font-family:var(--font);font-size:0.625rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
+      padding:0.5rem 1rem;background:var(--white);color:var(--black);border:none;cursor:pointer;transition:opacity .2s;
+      white-space:nowrap;
     }
-    @media (min-width: 640px) { nav { padding: 0 2rem; } }
-    nav.scrolled {
-      background: rgba(0,0,0,0.96); backdrop-filter: blur(18px);
-      border-color: var(--line);
-    }
+    .nav-cta:hover{opacity:.8}
 
-    .nav-left { display: flex; align-items: center; gap: 0.75rem; }
-    .nav-wordmark { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
-    .nav-sep { width: 1px; height: 14px; background: var(--muted); display: none; }
-    @media (min-width: 480px) { .nav-sep { display: block; } }
-    .nav-meta { font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.12em; color: var(--dim); text-transform: uppercase; display: none; }
-    @media (min-width: 480px) { .nav-meta { display: block; } }
-
-    .nav-right { display: flex; align-items: center; gap: 1rem; }
-    @media (min-width: 640px) { .nav-right { gap: 1.5rem; } }
-
-    .nav-x {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      color: rgba(255,255,255,0.5); transition: color 0.2s;
-    }
-    .nav-x:hover { color: var(--white); }
-    .nav-x svg { width: 15px; height: 15px; }
-
-    .nav-link { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); transition: color 0.2s; display: none; }
-    @media (min-width: 640px) { .nav-link { display: inline; } }
-    .nav-link:hover { color: var(--white); }
-
-    .nav-cta {
-      font-family: var(--font); font-size: 0.625rem; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      padding: 0.4375rem 0.875rem; border: 1px solid var(--muted);
-      background: transparent; color: var(--white);
-      transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer;
-    }
-    @media (min-width: 640px) { .nav-cta { padding: 0.5rem 1.125rem; font-size: 0.6875rem; } }
-    .nav-cta:hover { background: var(--white); color: var(--black); border-color: var(--white); }
-
-    /* ─── HERO ─── */
-    #hero {
-      min-height: 100vh;
-      padding-top: calc(var(--bar-h) + var(--nav-h));
-      display: flex; flex-direction: column;
-      position: relative; overflow: hidden; z-index: 1;
+    /* ── HERO ── */
+    #hero{
+      min-height:100svh;
+      padding-top:calc(var(--bar) + var(--nav));
+      display:flex;flex-direction:column;
+      position:relative;z-index:1;
     }
 
-    /* horizontal rule top */
-    .hero-rule-top {
-      border: none; border-top: 1px solid var(--line);
-      margin: 0;
+    .hero-body{
+      flex:1;display:flex;flex-direction:column;
+      padding:2.5rem 1.25rem 2rem;
+      justify-content:center;
     }
-
-    .hero-main {
-      display: grid; grid-template-columns: 1fr;
-      flex: 1;
-    }
-    @media (min-width: 900px) {
-      .hero-main { grid-template-columns: 1fr 1fr; }
-    }
-
-    /* left col */
-    .hero-left {
-      padding: 3rem 1.25rem 3.5rem;
-      display: flex; flex-direction: column;
-      position: relative;
-    }
-    @media (min-width: 480px) { .hero-left { padding: 3.5rem 2rem 4rem; } }
-    @media (min-width: 900px) {
-      .hero-left {
-        padding: 5rem 3.5rem 5rem;
-        border-right: 1px solid var(--line);
+    @media(min-width:480px){.hero-body{padding:3rem 2rem 2.5rem}}
+    @media(min-width:900px){
+      .hero-body{
+        display:grid;grid-template-columns:1fr 1fr;
+        padding:4rem 3.5rem;align-items:center;gap:4rem;
       }
     }
 
-    /* operation tag */
-    .hero-optag {
-      display: inline-flex; align-items: center; gap: 0.625rem;
-      border: 1px solid var(--line-bright);
-      padding: 0.3125rem 0.75rem;
-      font-family: var(--mono); font-size: 0.45rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(255,255,255,0.35); margin-bottom: 2rem; align-self: flex-start;
-      opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s;
+    /* left */
+    .hero-l{display:flex;flex-direction:column}
+
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:0.625rem;
+      font-family:var(--mono);font-size:0.4375rem;letter-spacing:0.2em;text-transform:uppercase;
+      color:rgba(255,255,255,0.35);margin-bottom:1.5rem;
+      opacity:0;animation:au .5s ease forwards .1s;
     }
-    .optag-dot {
-      width: 5px; height: 5px; background: var(--white); opacity: 0.5;
-      animation: dotBlink 1.6s ease-in-out infinite; flex-shrink: 0;
+    .badge-dot{width:5px;height:5px;background:var(--white);opacity:.5;border-radius:50%;animation:blink 1.6s ease-in-out infinite}
+
+    .hero-h1{
+      font-size:clamp(2.75rem,10vw,5.75rem);
+      font-weight:700;letter-spacing:-.035em;line-height:.97;
+      margin-bottom:1.5rem;
+      opacity:0;animation:au .6s ease forwards .2s;
+    }
+    .hero-h1 .hl{
+      display:block;
+      color:transparent;
+      -webkit-text-stroke:1px rgba(255,255,255,.28);
     }
 
-    .hero-headline {
-      font-size: clamp(2.6rem, 9vw, 5.5rem);
-      font-weight: 700; letter-spacing: -0.03em; line-height: 1.0;
-      margin-bottom: 1.75rem;
-      opacity: 0; animation: fadeUp 0.65s ease forwards 0.2s;
-    }
-    .hero-headline .line2 {
-      display: block;
-      background: linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.25) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .hero-sub{
+      font-size:clamp(.875rem,2.5vw,1rem);font-weight:300;line-height:1.72;
+      color:rgba(255,255,255,.4);max-width:380px;margin-bottom:2rem;
+      opacity:0;animation:au .6s ease forwards .3s;
     }
 
-    .hero-sub {
-      font-size: 0.9375rem; font-weight: 300; line-height: 1.75;
-      color: rgba(255,255,255,0.42); max-width: 360px;
-      margin-bottom: 2.5rem;
-      opacity: 0; animation: fadeUp 0.65s ease forwards 0.35s;
+    .hero-cta{
+      display:flex;flex-direction:column;gap:.75rem;align-items:flex-start;
+      margin-bottom:2.5rem;
+      opacity:0;animation:au .6s ease forwards .4s;
+    }
+    @media(min-width:420px){.hero-cta{flex-direction:row;align-items:center}}
+
+    .btn-main{
+      display:inline-flex;align-items:center;gap:.75rem;
+      font-family:var(--font);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+      background:var(--white);color:var(--black);padding:.875rem 1.625rem;
+      border:none;cursor:pointer;transition:opacity .2s;white-space:nowrap;
+    }
+    .btn-main:hover{opacity:.8}
+    .btn-main .arr{transition:transform .2s}
+    .btn-main:hover .arr{transform:translateX(4px)}
+
+    .btn-sec{
+      font-family:var(--font);font-size:.6875rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+      color:rgba(255,255,255,.35);transition:color .2s;cursor:pointer;white-space:nowrap;
+    }
+    .btn-sec:hover{color:var(--white)}
+
+    .hero-trust{
+      display:flex;flex-direction:column;gap:.4375rem;
+      opacity:0;animation:au .6s ease forwards .5s;
+    }
+    .trust-item{
+      font-family:var(--mono);font-size:.4375rem;letter-spacing:.16em;text-transform:uppercase;
+      color:rgba(255,255,255,.2);display:flex;align-items:center;gap:.625rem;
+    }
+    .trust-item::before{content:'';width:12px;height:1px;background:rgba(255,255,255,.18);flex-shrink:0}
+
+    /* right — terminal */
+    .hero-r{
+      display:none;
+      opacity:0;animation:au .7s ease forwards .6s;
+    }
+    @media(min-width:900px){.hero-r{display:block}}
+
+    .terminal{
+      border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.025);overflow:hidden;
+    }
+    .term-bar{
+      display:flex;align-items:center;padding:.625rem 1rem;
+      border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);gap:.5rem;
+    }
+    .tdot{width:6px;height:6px;border-radius:50%;background:var(--white);opacity:.14}
+    .tdot.on{opacity:.6;animation:blink 1.2s ease-in-out infinite}
+    .tbar-l{font-family:var(--mono);font-size:.4rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.18);margin-left:auto}
+    .term-body{
+      padding:1.375rem 1.125rem;
+      font-family:var(--mono);font-size:.7rem;line-height:1.95;
+      color:rgba(255,255,255,.65);min-height:260px;overflow:hidden;
+    }
+    .tl{opacity:0}.tl.s{animation:si .22s ease forwards}.tl.d{color:rgba(255,255,255,.3)}.tl.a{color:var(--white)}
+
+    /* ── STATS ROW ── */
+    .stats{
+      border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);
+    }
+    .stat{
+      padding:1.25rem 1.25rem;border-right:1px solid var(--line);
+      display:flex;flex-direction:column;gap:.3rem;
+    }
+    .stat:last-child{border-right:none}
+    .stat-n{font-size:clamp(1.25rem,3.5vw,1.875rem);font-weight:700;letter-spacing:-.04em;line-height:1}
+    .stat-l{font-family:var(--mono);font-size:.4rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+
+    /* ── SIGNAL TICKER ── */
+    .signal{
+      border-top:1px solid var(--line);height:36px;display:flex;align-items:center;overflow:hidden;
+      background:rgba(255,255,255,.015);
+    }
+    .signal-label{
+      flex-shrink:0;padding:0 1rem;height:100%;display:flex;align-items:center;
+      font-family:var(--mono);font-size:.4rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.18);
+      border-right:1px solid var(--line);white-space:nowrap;
+    }
+    .signal-track{flex:1;overflow:hidden}
+    .signal-inner{
+      display:flex;gap:3rem;padding:0 1.5rem;white-space:nowrap;
+      font-family:var(--mono);font-size:.4rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.18);
+      animation:tickerMove 28s linear infinite;
+    }
+    .signal-inner span::before{content:'— ';color:rgba(255,255,255,.08)}
+
+    /* ── SECTION: PRODUCTS ── */
+    #products{border-top:1px solid var(--line);position:relative;z-index:1}
+
+    .section-masthead{
+      padding:3.5rem 1.25rem 2.5rem;
+      border-bottom:1px solid var(--line);
+      position:relative;overflow:hidden;
+    }
+    @media(min-width:640px){.section-masthead{padding:4.5rem 2rem 3rem}}
+    @media(min-width:960px){.section-masthead{padding:5.5rem 3.5rem 3.5rem}}
+
+    .section-num{
+      font-family:var(--mono);font-size:.45rem;letter-spacing:.28em;text-transform:uppercase;
+      color:rgba(255,255,255,.18);margin-bottom:1rem;display:block;
+    }
+    .section-h2{
+      font-size:clamp(2.75rem,7vw,5.5rem);font-weight:700;letter-spacing:-.04em;line-height:.95;
+      margin-bottom:1.25rem;
+    }
+    .section-h2 em{font-style:normal;color:rgba(255,255,255,.28)}
+    .section-desc{
+      font-size:.875rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,.35);
+      max-width:440px;
+    }
+    .section-ghost-num{
+      position:absolute;right:-0.5rem;top:50%;transform:translateY(-50%);
+      font-size:clamp(6rem,18vw,14rem);font-weight:700;letter-spacing:-.05em;
+      color:rgba(255,255,255,.03);line-height:1;pointer-events:none;user-select:none;
     }
 
-    /* live terminal (mobile — visible always) */
-    .hero-mini-terminal {
-      border: 1px solid var(--line-bright);
-      background: rgba(255,255,255,0.025);
-      margin-bottom: 2.5rem;
-      overflow: hidden;
-      opacity: 0; animation: fadeUp 0.65s ease forwards 0.45s;
+    .products-grid{
+      display:grid;grid-template-columns:1fr;
+      gap:1px;background:var(--line);
     }
-    @media (min-width: 900px) { .hero-mini-terminal { display: none; } }
+    @media(min-width:680px){.products-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1040px){.products-grid{grid-template-columns:repeat(3,1fr)}}
 
-    .mini-term-bar {
-      display: flex; align-items: center; gap: 0.5rem;
-      padding: 0.5625rem 0.875rem;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
+    .card{
+      background:var(--black);padding:2rem 1.5rem;
+      display:flex;flex-direction:column;gap:1.25rem;
+      position:relative;overflow:hidden;transition:background .25s;
     }
-    .mini-dot { width: 5px; height: 5px; background: var(--white); opacity: 0.18; border-radius: 50%; }
-    .mini-dot.live { opacity: 0.6; animation: dotBlink 1s ease-in-out infinite; }
-    .mini-bar-label {
-      font-family: var(--mono); font-size: 0.4rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: rgba(255,255,255,0.2); margin-left: auto;
+    @media(min-width:640px){.card{padding:2.5rem 2rem}}
+    .card:hover{background:rgba(255,255,255,.028)}
+    .card::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+      background:var(--white);transform:scaleX(0);transform-origin:left;transition:transform .45s ease;
     }
+    .card:hover::after{transform:scaleX(1)}
 
-    .mini-term-body {
-      padding: 0.875rem;
-      font-family: var(--mono); font-size: 0.625rem; line-height: 1.85;
-      color: rgba(255,255,255,0.6); min-height: 110px;
-      overflow: hidden;
+    .card-top{display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+    .card-id{font-family:var(--mono);font-size:.4rem;letter-spacing:.2em;color:rgba(255,255,255,.18);text-transform:uppercase}
+    .card-badge{
+      font-family:var(--mono);font-size:.4rem;letter-spacing:.16em;text-transform:uppercase;
+      padding:.2rem .5rem;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.25);
+      transition:all .2s;flex-shrink:0;
     }
+    .card:hover .card-badge{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.65)}
+    .card-badge.on{border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.6)}
 
-    .hero-actions {
-      display: flex; flex-direction: column; gap: 0.875rem; align-items: flex-start;
-      margin-bottom: 3rem;
-      opacity: 0; animation: fadeUp 0.65s ease forwards 0.5s;
-    }
-    @media (min-width: 480px) { .hero-actions { flex-direction: row; align-items: center; } }
+    .card-name{font-size:1.125rem;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+    .card-desc{font-size:.8125rem;font-weight:300;line-height:1.72;color:rgba(255,255,255,.38);flex-grow:1}
 
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.75rem;
-      font-family: var(--font); font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      background: var(--white); color: var(--black);
-      padding: 0.875rem 1.75rem; border: none; cursor: pointer;
-      transition: opacity 0.2s;
+    .card-list{
+      list-style:none;display:flex;flex-direction:column;gap:.5rem;
+      padding-top:1rem;border-top:1px solid var(--line);
     }
-    .btn-primary:hover { opacity: 0.82; }
-    .btn-primary-arrow { transition: transform 0.2s; }
-    .btn-primary:hover .btn-primary-arrow { transform: translateX(4px); }
+    .card-li{
+      font-family:var(--mono);font-size:.4rem;letter-spacing:.14em;text-transform:uppercase;
+      color:rgba(255,255,255,.2);display:flex;align-items:center;gap:.625rem;transition:color .2s;
+    }
+    .card:hover .card-li{color:rgba(255,255,255,.4)}
+    .card-li::before{content:'';width:10px;height:1px;background:rgba(255,255,255,.15);flex-shrink:0;transition:width .2s,background .2s}
+    .card:hover .card-li::before{width:14px;background:rgba(255,255,255,.4)}
 
-    .btn-ghost {
-      font-family: var(--font); font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(255,255,255,0.4); transition: color 0.2s; cursor: pointer;
+    .card-link{
+      display:inline-flex;align-items:center;gap:.5rem;align-self:flex-start;margin-top:auto;
+      font-family:var(--font);font-size:.5625rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+      color:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.08);
+      padding:.5rem .875rem;transition:all .2s;cursor:pointer;background:transparent;
     }
-    .btn-ghost:hover { color: var(--white); }
+    .card:hover .card-link{border-color:rgba(255,255,255,.3);color:var(--white)}
 
-    /* trust strip */
-    .hero-trust {
-      display: flex; flex-direction: column; gap: 0.5rem;
-      opacity: 0; animation: fadeUp 0.65s ease forwards 0.6s;
+    /* featured card */
+    .card.feat{
+      grid-column:1/-1;
+      flex-direction:row;align-items:stretch;gap:0;padding:0;
     }
-    .hero-trust-item {
-      font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: rgba(255,255,255,0.2);
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .hero-trust-item::before {
-      content: ''; width: 14px; height: 1px;
-      background: rgba(255,255,255,0.2); flex-shrink: 0;
-    }
+    @media(max-width:679px){.card.feat{flex-direction:column;padding:2rem 1.5rem;gap:1.25rem}}
 
-    /* right col — desktop terminal */
-    .hero-right {
-      display: none;
-      position: relative;
-      background: rgba(255,255,255,0.015);
-    }
-    @media (min-width: 900px) {
-      .hero-right { display: flex; flex-direction: column; }
-    }
+    .feat-l{flex:1;padding:2.25rem 2rem;display:flex;flex-direction:column;gap:1.25rem;border-right:1px solid var(--line)}
+    @media(max-width:679px){.feat-l{border-right:none;border-bottom:1px solid var(--line);padding:0 0 1.5rem}}
 
-    .desktop-terminal {
-      flex: 1; display: flex; flex-direction: column;
-      border-left: 1px solid var(--line);
-    }
-    .desk-term-bar {
-      display: flex; align-items: center; gap: 0.5rem;
-      padding: 0.875rem 1.25rem;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,0.025); flex-shrink: 0;
-    }
-    .desk-dot { width: 6px; height: 6px; background: var(--white); opacity: 0.15; border-radius: 50%; }
-    .desk-dot.live { opacity: 0.65; animation: dotBlink 1.2s ease-in-out infinite; }
-    .desk-bar-label {
-      font-family: var(--mono); font-size: 0.4375rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: rgba(255,255,255,0.2); margin-left: auto;
-    }
-    .desk-term-body {
-      flex: 1; padding: 1.75rem 1.5rem;
-      font-family: var(--mono); font-size: 0.75rem; line-height: 1.9;
-      color: rgba(255,255,255,0.65);
-      overflow: hidden;
-    }
+    .feat-r{flex:0 0 240px;padding:2.25rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem}
+    @media(max-width:679px){.feat-r{flex:none;padding:1.5rem 0 0}}
 
-    /* shared terminal line animation */
-    .t-line { opacity: 0; }
-    .t-line.show { animation: slideIn 0.25s ease forwards; }
-    .t-line.dim { color: rgba(255,255,255,0.3); }
-    .t-line.accent { color: rgba(255,255,255,0.9); }
+    .price-lbl{font-family:var(--mono);font-size:.4rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+    .price-val{font-size:2rem;font-weight:700;letter-spacing:-.04em;line-height:1}
+    .price-per{font-family:var(--mono);font-size:.4rem;letter-spacing:.14em;color:rgba(255,255,255,.2);margin-top:.2rem}
 
-    /* bottom stats bar */
-    .hero-stats {
-      border-top: 1px solid var(--line);
-      display: grid; grid-template-columns: repeat(3, 1fr);
+    .feat-cta{
+      display:inline-flex;align-items:center;gap:.625rem;align-self:flex-start;
+      font-family:var(--font);font-size:.6875rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+      background:var(--white);color:var(--black);padding:.8125rem 1.375rem;
+      border:none;cursor:pointer;transition:opacity .2s;white-space:nowrap;
     }
-    @media (min-width: 900px) { .hero-stats { grid-template-columns: repeat(3, 1fr); } }
+    .feat-cta:hover{opacity:.8}
+    .feat-cta .arr{transition:transform .2s}
+    .feat-cta:hover .arr{transform:translateX(3px)}
 
-    .stat {
-      padding: 1.25rem 1.25rem;
-      border-right: 1px solid var(--line);
-      display: flex; flex-direction: column; gap: 0.375rem;
+    /* ── FOOTER ── */
+    footer{
+      border-top:1px solid var(--line);padding:1.5rem 1.25rem;position:relative;z-index:1;
     }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-size: clamp(1.25rem, 3vw, 1.75rem); font-weight: 700;
-      letter-spacing: -0.04em; line-height: 1;
+    @media(min-width:960px){footer{padding:1.5rem 3.5rem}}
+    .foot{display:flex;flex-direction:column;gap:.875rem;align-items:flex-start}
+    @media(min-width:640px){.foot{flex-direction:row;align-items:center;justify-content:space-between}}
+    .foot-l{display:flex;align-items:center;gap:.875rem}
+    .foot-brand{font-size:.6875rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+    .foot-pipe{width:1px;height:12px;background:var(--muted)}
+    .foot-sub{font-family:var(--mono);font-size:.4rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.18)}
+    .foot-r{display:flex;align-items:center;gap:1.25rem}
+    .foot-x{
+      display:inline-flex;align-items:center;gap:.4375rem;
+      font-family:var(--mono);font-size:.4rem;letter-spacing:.16em;text-transform:uppercase;
+      color:rgba(255,255,255,.28);transition:color .2s;
     }
-    .stat-label {
-      font-family: var(--mono); font-size: 0.4rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: rgba(255,255,255,0.22);
-    }
+    .foot-x:hover{color:var(--white)}
+    .foot-x svg{width:11px;height:11px}
+    .foot-copy{font-family:var(--mono);font-size:.4rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.12)}
 
-    /* ─── TICKER ─── */
-    .ticker-wrap {
-      border-top: 1px solid var(--line);
-      overflow: hidden; position: relative; z-index: 1;
-      height: 40px; display: flex; align-items: center;
-      background: rgba(255,255,255,0.015);
-    }
-    .ticker-label {
-      flex-shrink: 0; padding: 0 1.25rem;
-      font-family: var(--mono); font-size: 0.45rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: rgba(255,255,255,0.2);
-      border-right: 1px solid var(--line); height: 100%;
-      display: flex; align-items: center; white-space: nowrap;
-    }
-    .ticker-track {
-      display: flex; overflow: hidden; flex: 1;
-    }
-    .ticker-inner {
-      display: flex; gap: 3rem; padding: 0 2rem;
-      animation: ticker 30s linear infinite; white-space: nowrap;
-      font-family: var(--mono); font-size: 0.45rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: rgba(255,255,255,0.2);
-    }
-    .ticker-inner span::before { content: '// '; color: rgba(255,255,255,0.1); }
+    /* ── REVEAL ── */
+    .rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+    .rv.in{opacity:1;transform:none}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 
-    /* ─── PRODUCTS ─── */
-    #products {
-      border-top: 1px solid var(--line);
-      padding: 5rem 1.25rem;
-      position: relative; z-index: 1;
-    }
-    @media (min-width: 480px) { #products { padding: 7rem 2rem; } }
-    @media (min-width: 960px) { #products { padding: 9rem 3.5rem; } }
+    /* ── KEYFRAMES ── */
+    @keyframes au{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+    @keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
+    @keyframes tdot{0%,100%{opacity:.4}50%{opacity:1}}
+    @keyframes tickerMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @keyframes si{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
 
-    .products-header {
-      display: flex; flex-direction: column; gap: 1.25rem;
-      margin-bottom: 4rem; padding-bottom: 1.75rem;
-      border-bottom: 1px solid var(--line);
-    }
-    @media (min-width: 640px) { .products-header { flex-direction: row; align-items: baseline; justify-content: space-between; } }
-    .products-header-left { display: flex; align-items: baseline; gap: 1.5rem; }
-    .products-num { font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.2); text-transform: uppercase; white-space: nowrap; }
-    .products-title { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; letter-spacing: -0.025em; }
-    .products-meta { font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.18); }
-
-    .products-grid {
-      display: grid; grid-template-columns: 1fr;
-      gap: 1px; background: var(--line);
-      border: 1px solid var(--line);
-    }
-    @media (min-width: 700px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1050px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
-
-    .product-card {
-      background: var(--black); padding: 2.25rem 1.75rem;
-      position: relative; display: flex; flex-direction: column; gap: 1.375rem;
-      transition: background 0.25s; overflow: hidden;
-    }
-    .product-card:hover { background: rgba(255,255,255,0.025); }
-    .product-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: var(--white); transform: scaleX(0); transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-    .product-card:hover::before { transform: scaleX(1); }
-
-    .product-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
-    .product-id { font-family: var(--mono); font-size: 0.4375rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.18); text-transform: uppercase; }
-
-    .product-badge {
-      font-family: var(--mono); font-size: 0.4375rem; letter-spacing: 0.16em; text-transform: uppercase;
-      padding: 0.25rem 0.5rem; border: 1px solid rgba(255,255,255,0.12);
-      color: rgba(255,255,255,0.28); flex-shrink: 0; transition: all 0.2s;
-    }
-    .product-card:hover .product-badge { border-color: rgba(255,255,255,0.28); color: rgba(255,255,255,0.6); }
-    .product-badge.live { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.6); }
-
-    .product-name { font-size: 1.1875rem; font-weight: 700; letter-spacing: -0.02em; }
-    .product-desc { font-size: 0.8125rem; font-weight: 300; line-height: 1.72; color: rgba(255,255,255,0.4); flex-grow: 1; }
-
-    .product-features {
-      list-style: none; display: flex; flex-direction: column; gap: 0.625rem;
-      padding-top: 1.125rem; border-top: 1px solid var(--line);
-    }
-    .product-feature {
-      font-family: var(--mono); font-size: 0.4375rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(255,255,255,0.22); display: flex; align-items: center; gap: 0.625rem; transition: color 0.2s;
-    }
-    .product-card:hover .product-feature { color: rgba(255,255,255,0.4); }
-    .product-feature::before {
-      content: ''; width: 10px; height: 1px; background: rgba(255,255,255,0.18); flex-shrink: 0; transition: width 0.2s, background 0.2s;
-    }
-    .product-card:hover .product-feature::before { background: rgba(255,255,255,0.4); width: 14px; }
-
-    .product-card-cta {
-      display: inline-flex; align-items: center; gap: 0.5rem; align-self: flex-start; margin-top: auto;
-      font-family: var(--font); font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-      background: transparent; color: rgba(255,255,255,0.28); border: 1px solid rgba(255,255,255,0.1);
-      padding: 0.5625rem 0.875rem; transition: all 0.2s; cursor: pointer;
-    }
-    .product-card:hover .product-card-cta { border-color: rgba(255,255,255,0.32); color: var(--white); }
-
-    /* featured */
-    .product-card.featured {
-      grid-column: 1 / -1;
-      flex-direction: row; align-items: stretch; gap: 0; padding: 0;
-    }
-    @media (max-width: 699px) { .product-card.featured { flex-direction: column; padding: 2.25rem 1.75rem; gap: 1.375rem; } }
-
-    .featured-left {
-      flex: 1; padding: 2.25rem 1.75rem;
-      display: flex; flex-direction: column; gap: 1.375rem;
-      border-right: 1px solid var(--line);
-    }
-    @media (max-width: 699px) { .featured-left { border-right: none; border-bottom: 1px solid var(--line); padding: 0 0 1.5rem; } }
-
-    .featured-right {
-      flex: 0 0 260px; padding: 2.25rem 1.75rem;
-      display: flex; flex-direction: column; justify-content: space-between; gap: 2rem;
-    }
-    @media (max-width: 699px) { .featured-right { flex: none; padding: 1.5rem 0 0; } }
-
-    .featured-price { display: flex; flex-direction: column; gap: 0.25rem; }
-    .price-label { font-family: var(--mono); font-size: 0.4375rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
-    .price-value { font-size: 2.125rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
-    .price-period { font-family: var(--mono); font-size: 0.4375rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.22); margin-top: 0.25rem; }
-
-    .featured-cta {
-      display: inline-flex; align-items: center; gap: 0.625rem; align-self: flex-start;
-      font-family: var(--font); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
-      background: var(--white); color: var(--black); padding: 0.8125rem 1.5rem;
-      transition: opacity 0.2s; cursor: pointer; border: none;
-    }
-    .featured-cta:hover { opacity: 0.85; }
-    .featured-cta .arrow { transition: transform 0.2s; }
-    .featured-cta:hover .arrow { transform: translateX(3px); }
-
-    /* ─── FOOTER ─── */
-    footer {
-      border-top: 1px solid var(--line); padding: 1.625rem 1.25rem;
-      position: relative; z-index: 1;
-    }
-    @media (min-width: 960px) { footer { padding: 1.625rem 3.5rem; } }
-    .footer-inner {
-      display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;
-    }
-    @media (min-width: 640px) { .footer-inner { flex-direction: row; align-items: center; justify-content: space-between; } }
-    .footer-left { display: flex; align-items: center; gap: 1rem; }
-    .footer-brand { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
-    .footer-pipe { width: 1px; height: 12px; background: var(--muted); }
-    .footer-sub { font-family: var(--mono); font-size: 0.45rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.18); }
-    .footer-right { display: flex; align-items: center; gap: 1.25rem; }
-    .footer-x {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: var(--mono); font-size: 0.45rem; letter-spacing: 0.15em;
-      text-transform: uppercase; color: rgba(255,255,255,0.3); transition: color 0.2s;
-    }
-    .footer-x:hover { color: var(--white); }
-    .footer-x svg { width: 12px; height: 12px; }
-    .footer-copy { font-family: var(--mono); font-size: 0.45rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.12); }
-
-    /* ─── REVEAL ─── */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-d1 { transition-delay: 0.1s; }
-    .reveal-d2 { transition-delay: 0.2s; }
-    .reveal-d3 { transition-delay: 0.3s; }
-
-    /* ─── KEYFRAMES ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; }
-    }
-    @keyframes dotBlink { 0%,100%{opacity:0.2}50%{opacity:1} }
-    @keyframes annPulse { 0%,100%{opacity:0.5}50%{opacity:1} }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; }
-    }
-    @keyframes ticker {
-      0% { transform: translateX(0); } 100% { transform: translateX(-50%); }
-    }
-    @keyframes scrollDown { 0%,100%{opacity:0.2;transform:translateY(0)}50%{opacity:0.8;transform:translateY(6px)} }
-
-    ::-webkit-scrollbar { width: 3px; }
-    ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+    ::-webkit-scrollbar{width:3px}
+    ::-webkit-scrollbar-track{background:var(--black)}
+    ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15)}
   </style>
 </head>
 <body>
 
-  <!-- ═══ ANNOUNCEMENT BAR ═══ -->
-  <div class="ann-bar">
-    <div class="ann-inner">
-      <div class="ann-dot"></div>
-      <span>Live on</span>
-      <a href="https://x.com/blacksitebond" target="_blank" rel="noopener" class="ann-link">
-        <svg class="ann-x-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-        @blacksitebond
-      </a>
-      <span class="ann-sep">—</span>
-      <span>Follow for live operation updates</span>
+  <!-- ══ TICKER BAR ══ -->
+  <div class="ticker-bar">
+    <div class="ticker-fixed">
+      <div class="ticker-dot"></div>
+      <span>LIVE</span>
+    </div>
+    <div class="ticker-scroll">
+      <div class="ticker-track">
+        <a href="https://x.com/blacksitebond" target="_blank" rel="noopener">
+          <svg class="t-xi" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          @blacksitebond
+        </a>
+        <span>Follow for live operation updates</span>
+        <span>47 operations deployed</span>
+        <span>BLACKSITE CORE — $1,200 / operation</span>
+        <span>72h to production</span>
+        <span>Autonomous. Fast. Yours.</span>
+        <!-- duplicate for loop -->
+        <a href="https://x.com/blacksitebond" target="_blank" rel="noopener">
+          <svg class="t-xi" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          @blacksitebond
+        </a>
+        <span>Follow for live operation updates</span>
+        <span>47 operations deployed</span>
+        <span>BLACKSITE CORE — $1,200 / operation</span>
+        <span>72h to production</span>
+        <span>Autonomous. Fast. Yours.</span>
+      </div>
     </div>
   </div>
 
-  <!-- ═══ NAV ═══ -->
-  <nav id="navbar">
-    <div class="nav-left">
-      <a href="#hero">
+  <!-- ══ NAV ══ -->
+  <nav id="nav">
+    <div class="nav-brand">
+      <a href="#hero" aria-label="BLACKSITE home">
         <svg width="26" height="26" viewBox="0 0 40 40" fill="none">
           <rect width="40" height="40" fill="#000"/>
           <rect x="1.5" y="1.5" width="37" height="37" fill="none" stroke="white" stroke-width="0.75"/>
@@ -543,315 +416,279 @@
           <line x1="29" y1="18" x2="15" y2="22" stroke="black" stroke-width="2"/>
         </svg>
       </a>
-      <span class="nav-wordmark">BLACKSITE</span>
-      <div class="nav-sep"></div>
-      <span class="nav-meta">BOND / Classified</span>
+      <span class="nav-word">BLACKSITE</span>
     </div>
-    <div class="nav-right">
-      <a href="https://x.com/blacksitebond" target="_blank" rel="noopener" class="nav-x" title="Follow @blacksitebond">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-      </a>
-      <a href="#products" class="nav-link">Products</a>
-      <a href="/app" class="nav-link">Console</a>
-      <a href="/login" class="nav-cta">Access</a>
+    <div class="nav-links">
+      <a href="#products">Products</a>
+      <a href="/app">Console</a>
+    </div>
+    <div class="nav-end">
+      <a href="/login" class="nav-cta">Access →</a>
     </div>
   </nav>
 
-  <!-- ═══ HERO ═══ -->
+  <!-- ══ HERO ══ -->
   <section id="hero">
-    <hr class="hero-rule-top"/>
-
-    <div class="hero-main">
+    <div class="hero-body">
       <!-- left -->
-      <div class="hero-left">
-        <div class="hero-optag">
-          <div class="optag-dot"></div>
-          OPERATION ACTIVE &nbsp;·&nbsp; BST-ALPHA-001
+      <div class="hero-l">
+        <div class="hero-badge">
+          <div class="badge-dot"></div>
+          Operation active &nbsp;·&nbsp; BST-001
         </div>
 
-        <h1 class="hero-headline">
-          Input an idea.<br/>
-          <span class="line2">Output a<br/>deployed company.</span>
+        <h1 class="hero-h1">
+          Input<br/>an idea.<br/>
+          <span class="hl">Output a<br/>company.</span>
         </h1>
 
         <p class="hero-sub">
           BLACKSITE turns any product idea into a production-ready company — codebase, infrastructure, domain — in under 72 hours.
         </p>
 
-        <!-- Mini terminal — mobile only -->
-        <div class="hero-mini-terminal">
-          <div class="mini-term-bar">
-            <div class="mini-dot live"></div>
-            <div class="mini-dot"></div>
-            <div class="mini-dot"></div>
-            <span class="mini-bar-label">BLACKSITE / LIVE OPERATION</span>
-          </div>
-          <div class="mini-term-body" id="mobileTerminal"></div>
-        </div>
-
-        <div class="hero-actions">
-          <a href="/login" class="btn-primary">
-            Try BLACKSITE <span class="btn-primary-arrow">→</span>
+        <div class="hero-cta">
+          <a href="/login" class="btn-main">
+            Try BLACKSITE <span class="arr">→</span>
           </a>
-          <a href="#products" class="btn-ghost">View Products</a>
+          <a href="#products" class="btn-sec">View Products</a>
         </div>
 
         <div class="hero-trust">
-          <div class="hero-trust-item">End-to-end deployment in under 72h</div>
-          <div class="hero-trust-item">Full code ownership. Zero lock-in.</div>
-          <div class="hero-trust-item">14 autonomous operators. One directive.</div>
+          <div class="trust-item">Full-stack deploy in under 72h</div>
+          <div class="trust-item">You own 100% of the code</div>
+          <div class="trust-item">14 autonomous operators</div>
         </div>
       </div>
 
-      <!-- right — desktop terminal -->
-      <div class="hero-right">
-        <div class="desktop-terminal">
-          <div class="desk-term-bar">
-            <div class="desk-dot live"></div>
-            <div class="desk-dot"></div>
-            <div class="desk-dot"></div>
-            <span class="desk-bar-label">BLACKSITE / OPERATION LOG</span>
+      <!-- right: desktop terminal -->
+      <div class="hero-r">
+        <div class="terminal">
+          <div class="term-bar">
+            <div class="tdot on"></div>
+            <div class="tdot"></div>
+            <div class="tdot"></div>
+            <span class="tbar-l">BLACKSITE / LIVE OPERATION</span>
           </div>
-          <div class="desk-term-body" id="desktopTerminal"></div>
+          <div class="term-body" id="deskTerm"></div>
         </div>
       </div>
     </div>
 
-    <!-- stats bar -->
-    <div class="hero-stats">
+    <!-- stats -->
+    <div class="stats">
       <div class="stat">
-        <span class="stat-num" id="counter1">0</span>
-        <span class="stat-label">Operations Deployed</span>
+        <span class="stat-n" id="cnt">47</span>
+        <span class="stat-l">Operations Deployed</span>
       </div>
       <div class="stat">
-        <span class="stat-num">72h</span>
-        <span class="stat-label">Avg. Time to Production</span>
+        <span class="stat-n">72h</span>
+        <span class="stat-l">Avg. Time to Ship</span>
       </div>
       <div class="stat">
-        <span class="stat-num">14</span>
-        <span class="stat-label">Autonomous Operators</span>
+        <span class="stat-n">14</span>
+        <span class="stat-l">Autonomous Operators</span>
       </div>
     </div>
 
-    <!-- ticker -->
-    <div class="ticker-wrap">
-      <div class="ticker-label">Signal</div>
-      <div class="ticker-track">
-        <div class="ticker-inner" id="tickerInner">
-          <span>SaaS platform deployed</span>
-          <span>Marketplace live in 58h</span>
-          <span>AI product shipped</span>
+    <!-- signal ticker -->
+    <div class="signal">
+      <div class="signal-label">Signal</div>
+      <div class="signal-track">
+        <div class="signal-inner">
+          <span>SaaS platform live</span>
+          <span>Marketplace shipped in 58h</span>
+          <span>AI product deployed</span>
           <span>Full ownership transferred</span>
-          <span>Zero lock-in guaranteed</span>
+          <span>Zero lock-in</span>
           <span>Next operation initializing</span>
-          <span>Follow @blacksitebond</span>
-          <span>CORE — $1,200 per operation</span>
-          <span>Autonomous. Fast. Yours.</span>
-          <!-- duplicated for seamless loop -->
-          <span>SaaS platform deployed</span>
-          <span>Marketplace live in 58h</span>
-          <span>AI product shipped</span>
+          <span>Follow @blacksitebond on X</span>
+          <span>CORE — $1,200 per op</span>
+          <span>SaaS platform live</span>
+          <span>Marketplace shipped in 58h</span>
+          <span>AI product deployed</span>
           <span>Full ownership transferred</span>
-          <span>Zero lock-in guaranteed</span>
+          <span>Zero lock-in</span>
           <span>Next operation initializing</span>
-          <span>Follow @blacksitebond</span>
-          <span>CORE — $1,200 per operation</span>
-          <span>Autonomous. Fast. Yours.</span>
+          <span>Follow @blacksitebond on X</span>
+          <span>CORE — $1,200 per op</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ PRODUCTS ═══ -->
+  <!-- ══ PRODUCTS ══ -->
   <section id="products">
-    <div class="products-header reveal">
-      <div class="products-header-left">
-        <span class="products-num">BST / PD</span>
-        <h2 class="products-title">Products</h2>
-      </div>
-      <span class="products-meta">3 Active Deployments</span>
+    <div class="section-masthead rv">
+      <span class="section-num">01 — Products</span>
+      <h2 class="section-h2">
+        Three ways<br/>
+        <em>to build.</em>
+      </h2>
+      <p class="section-desc">
+        From a single deployment to a full autonomous operator network. Choose your operation level.
+      </p>
+      <div class="section-ghost-num" aria-hidden="true">01</div>
     </div>
 
     <div class="products-grid">
 
-      <div class="product-card featured reveal">
-        <div class="featured-left">
-          <div class="product-card-top">
-            <span class="product-id">BST / PD-01</span>
-            <span class="product-badge live">Live</span>
+      <!-- CORE -->
+      <div class="card feat rv">
+        <div class="feat-l">
+          <div class="card-top">
+            <span class="card-id">BST / PD-01</span>
+            <span class="card-badge on">Live</span>
           </div>
-          <div class="product-name">BLACKSITE CORE</div>
-          <p class="product-desc">The complete autonomous deployment pipeline. Describe your product in plain language — BLACKSITE translates it into a functioning company: codebase, infrastructure, domain, and launch. No engineers required.</p>
-          <ul class="product-features">
-            <li class="product-feature">Full-stack application generation</li>
-            <li class="product-feature">Autonomous infrastructure provisioning</li>
-            <li class="product-feature">Domain + DNS + SSL configured</li>
-            <li class="product-feature">Production deployment on Vercel / Railway</li>
-            <li class="product-feature">Source code transferred to your GitHub</li>
+          <div class="card-name">BLACKSITE CORE</div>
+          <p class="card-desc">The complete autonomous deployment pipeline. Describe your product in plain language — BLACKSITE translates it into a functioning company: codebase, infrastructure, domain, and launch. No engineers required.</p>
+          <ul class="card-list">
+            <li class="card-li">Full-stack application generation</li>
+            <li class="card-li">Autonomous infrastructure provisioning</li>
+            <li class="card-li">Domain + DNS + SSL configured</li>
+            <li class="card-li">Production deploy on Vercel / Railway</li>
+            <li class="card-li">Full source code transferred to your GitHub</li>
           </ul>
         </div>
-        <div class="featured-right">
-          <div class="featured-price">
-            <span class="price-label">Starting at</span>
-            <span class="price-value">$1,200</span>
-            <span class="price-period">Per operation</span>
+        <div class="feat-r">
+          <div>
+            <div class="price-lbl">Starting at</div>
+            <div class="price-val">$1,200</div>
+            <div class="price-per">Per operation</div>
           </div>
-          <a href="/login" class="featured-cta">Launch Operation <span class="arrow">→</span></a>
+          <a href="/login" class="feat-cta">Launch Operation <span class="arr">→</span></a>
         </div>
       </div>
 
-      <div class="product-card reveal reveal-d1">
-        <div class="product-card-top">
-          <span class="product-id">BST / PD-02</span>
-          <span class="product-badge">Available</span>
+      <!-- OPS -->
+      <div class="card rv d1">
+        <div class="card-top">
+          <span class="card-id">BST / PD-02</span>
+          <span class="card-badge">Available</span>
         </div>
-        <div class="product-name">BLACKSITE OPS</div>
-        <p class="product-desc">Ongoing operator coverage. 14 autonomous agents monitor, iterate, and expand your product post-launch on directive.</p>
-        <ul class="product-features">
-          <li class="product-feature">14 active AI operators post-launch</li>
-          <li class="product-feature">Weekly automated feature iterations</li>
-          <li class="product-feature">Bug triage + hotfix deployment</li>
-          <li class="product-feature">Performance monitoring + alerting</li>
+        <div class="card-name">BLACKSITE OPS</div>
+        <p class="card-desc">Ongoing operator coverage post-launch. 14 autonomous agents monitor, iterate, and expand your product on directive.</p>
+        <ul class="card-list">
+          <li class="card-li">14 active AI operators post-launch</li>
+          <li class="card-li">Weekly automated feature iterations</li>
+          <li class="card-li">Bug triage + hotfix deployment</li>
+          <li class="card-li">Performance monitoring + alerting</li>
         </ul>
-        <a href="/login" class="product-card-cta">Get Access →</a>
+        <a href="/login" class="card-link">Get Access →</a>
       </div>
 
-      <div class="product-card reveal reveal-d2">
-        <div class="product-card-top">
-          <span class="product-id">BST / PD-03</span>
-          <span class="product-badge">By Request</span>
+      <!-- CLASSIFIED -->
+      <div class="card rv d2">
+        <div class="card-top">
+          <span class="card-id">BST / PD-03</span>
+          <span class="card-badge">By Request</span>
         </div>
-        <div class="product-name">BLACKSITE CLASSIFIED</div>
-        <p class="product-desc">Custom architecture for high-stakes products. Private operator networks, air-gapped infrastructure, NDA-first engagement.</p>
-        <ul class="product-features">
-          <li class="product-feature">Private AI operator cluster</li>
-          <li class="product-feature">Air-gapped or on-prem deployment</li>
-          <li class="product-feature">NDA-first engagement</li>
-          <li class="product-feature">Direct access to principal operators</li>
+        <div class="card-name">BLACKSITE CLASSIFIED</div>
+        <p class="card-desc">Custom architecture for high-stakes products. Private operator networks, air-gapped infrastructure, NDA-first engagement.</p>
+        <ul class="card-list">
+          <li class="card-li">Private AI operator cluster</li>
+          <li class="card-li">Air-gapped or on-prem deployment</li>
+          <li class="card-li">NDA-first engagement</li>
+          <li class="card-li">Direct access to principal operators</li>
         </ul>
-        <a href="/login" class="product-card-cta">Request Briefing →</a>
+        <a href="/login" class="card-link">Request Briefing →</a>
       </div>
 
     </div>
   </section>
 
-  <!-- ═══ FOOTER ═══ -->
+  <!-- ══ FOOTER ══ -->
   <footer>
-    <div class="footer-inner">
-      <div class="footer-left">
-        <span class="footer-brand">BLACKSITE.BOND</span>
-        <div class="footer-pipe"></div>
-        <span class="footer-sub">Autonomous Product Deployment</span>
+    <div class="foot">
+      <div class="foot-l">
+        <span class="foot-brand">BLACKSITE.BOND</span>
+        <div class="foot-pipe"></div>
+        <span class="foot-sub">Autonomous Product Deployment</span>
       </div>
-      <div class="footer-right">
-        <a href="https://x.com/blacksitebond" target="_blank" rel="noopener" class="footer-x">
+      <div class="foot-r">
+        <a href="https://x.com/blacksitebond" target="_blank" rel="noopener" class="foot-x">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           @blacksitebond
         </a>
-        <span class="footer-copy">Est. 2025 // Clearance IV</span>
+        <span class="foot-copy">Est. 2025 // Clearance IV</span>
       </div>
     </div>
   </footer>
 
   <script>
-    // ── Nav scroll ──
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 20);
-    }, { passive: true });
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20), {passive:true});
 
-    // ── Scroll reveal ──
-    const io = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }),
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    // Reveal
+    const ro = new IntersectionObserver(
+      es => es.forEach(e => { if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)} }),
+      {threshold:.08, rootMargin:'0px 0px -30px 0px'}
     );
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    document.querySelectorAll('.rv').forEach(el => ro.observe(el));
 
-    // ── Counter ──
-    function animateCounter(el, target, duration = 2000) {
-      let start = null;
-      function step(ts) {
-        if (!start) start = ts;
-        const p = Math.min((ts - start) / duration, 1);
-        el.textContent = Math.round(p * target);
-        if (p < 1) requestAnimationFrame(step);
-        else el.textContent = target;
-      }
-      requestAnimationFrame(step);
-    }
-    const counterEl = document.getElementById('counter1');
-    const counterIo = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) { animateCounter(counterEl, 47); counterIo.disconnect(); }
-    }, { threshold: 0.5 });
-    counterIo.observe(counterEl);
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+      });
+    });
 
-    // ── Terminal demo (shared content) ──
-    const TERMINAL_LINES = [
-      { t: '> Initializing new operation...', cls: 'dim' },
-      { t: '' },
-      { t: 'BLACKSITE — OPERATION INITIATED', cls: 'accent' },
-      { t: '────────────────────────────────', cls: 'dim' },
-      { t: 'INPUT: AI coaching platform for founders' },
-      { t: 'COMPLEXITY: High' },
-      { t: '' },
-      { t: 'PRODUCT IDENTITY' },
-      { t: '└── Name: FOUNDERMODE', cls: 'accent' },
-      { t: '└── Domain: foundermode.io' },
-      { t: '└── Tagline: The AI co-founder.' },
-      { t: '' },
-      { t: 'TECH STACK SELECTED' },
-      { t: '└── Frontend: Next.js 15 + Tailwind' },
-      { t: '└── Backend: FastAPI + OpenAI' },
-      { t: '└── Database: PostgreSQL + Pinecone' },
-      { t: '└── Payments: Stripe' },
-      { t: '' },
-      { t: 'CORE MODULES' },
-      { t: '└── [01] AI coaching sessions + memory' },
-      { t: '└── [02] Founder progress dashboard' },
-      { t: '└── [03] Goal tracking + accountability' },
-      { t: '└── [04] Resource library + templates' },
-      { t: '└── [05] Community + peer matching' },
-      { t: '' },
-      { t: 'DEPLOYMENT ESTIMATE: 72h', cls: 'accent' },
-      { t: 'Revenue potential: $18K–$95K MRR' },
-      { t: '' },
-      { t: 'OPERATION STATUS: READY ✓', cls: 'accent' },
+    // Desktop terminal
+    const LINES = [
+      {t:'> initialize new-operation',cls:'d'},
+      {t:''},
+      {t:'BLACKSITE — OPERATION INITIATED',cls:'a'},
+      {t:'────────────────────────────────'},
+      {t:'INPUT: AI coaching for startup founders'},
+      {t:'COMPLEXITY: High'},
+      {t:''},
+      {t:'PRODUCT IDENTITY'},
+      {t:'└── Name: FOUNDERMODE',cls:'a'},
+      {t:'└── Domain: foundermode.io'},
+      {t:'└── Tagline: Your AI co-founder.'},
+      {t:''},
+      {t:'TECH STACK'},
+      {t:'└── Frontend: Next.js 15 + Tailwind'},
+      {t:'└── Backend: FastAPI + OpenAI'},
+      {t:'└── DB: PostgreSQL + Pinecone'},
+      {t:'└── Payments: Stripe'},
+      {t:''},
+      {t:'CORE MODULES'},
+      {t:'└── [01] AI coaching sessions + memory'},
+      {t:'└── [02] Goal tracking + accountability'},
+      {t:'└── [03] Community + peer matching'},
+      {t:''},
+      {t:'DEPLOY ESTIMATE: 72h',cls:'a'},
+      {t:'REVENUE POTENTIAL: $18K–$95K MRR'},
+      {t:''},
+      {t:'STATUS: READY TO EXECUTE ✓',cls:'a'},
     ];
 
-    function buildTerminal(containerId, maxLines) {
-      const el = document.getElementById(containerId);
-      if (!el) return;
-      let idx = 0;
-
-      function nextLine() {
-        if (idx >= TERMINAL_LINES.length) {
-          setTimeout(() => { el.innerHTML = ''; idx = 0; setTimeout(nextLine, 500); }, 2500);
+    function buildTerm(id, maxLines) {
+      const el = document.getElementById(id);
+      if(!el) return;
+      let i = 0;
+      function next() {
+        if(i >= LINES.length){
+          setTimeout(()=>{el.innerHTML='';i=0;setTimeout(next,600)}, 3000);
           return;
         }
-        const { t, cls } = TERMINAL_LINES[idx];
-        const div = document.createElement('div');
-        div.className = 't-line' + (cls ? ' ' + cls : '');
-        div.textContent = t || '\u00A0';
-        el.appendChild(div);
-
-        // keep max lines visible
-        const all = el.querySelectorAll('.t-line');
-        if (all.length > maxLines) all[0].remove();
-        el.scrollTop = el.scrollHeight;
-
-        requestAnimationFrame(() => setTimeout(() => div.classList.add('show'), 10));
-        idx++;
-
-        const delay = t === '' ? 100 : t.startsWith('>') ? 350 : t.startsWith('────') ? 50 : t.startsWith('BLACKSITE') ? 200 : 75;
-        setTimeout(nextLine, delay);
+        const {t,cls} = LINES[i];
+        const d = document.createElement('div');
+        d.className = 'tl'+(cls?' '+cls:'');
+        d.textContent = t||'\u00A0';
+        el.appendChild(d);
+        const all = el.querySelectorAll('.tl');
+        if(all.length > maxLines) all[0].remove();
+        requestAnimationFrame(()=>setTimeout(()=>d.classList.add('s'),8));
+        i++;
+        const delay = t===''?100:t.startsWith('>')? 350:t.startsWith('───')?50:t.startsWith('BLACKSITE')?200:70;
+        setTimeout(next, delay);
       }
-      nextLine();
+      next();
     }
-
-    buildTerminal('mobileTerminal', 7);
-    buildTerminal('desktopTerminal', 22);
+    buildTerm('deskTerm', 24);
   </script>
 </body>
 </html>
