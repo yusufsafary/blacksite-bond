@@ -36,11 +36,7 @@
     ::selection { background: var(--white); color: var(--black); }
     a { color: inherit; text-decoration: none; }
 
-    /* ─── MARK / LOGO SVG ─── */
-    .mark {
-      display: inline-block;
-      flex-shrink: 0;
-    }
+    .mark { display: inline-block; flex-shrink: 0; }
 
     /* ─── NAV ─── */
     nav {
@@ -48,47 +44,77 @@
       top: 0; left: 0; right: 0;
       z-index: 200;
       height: 56px;
-      padding: 0 2rem;
+      padding: 0 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       transition: background 0.4s ease, border-color 0.4s ease;
       border-bottom: 1px solid transparent;
     }
+
+    @media (min-width: 640px) {
+      nav { padding: 0 2rem; }
+    }
+
     nav.scrolled {
-      background: rgba(0,0,0,0.92);
+      background: rgba(0,0,0,0.94);
       backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-color: var(--line);
     }
 
     .nav-left {
       display: flex;
       align-items: center;
-      gap: 0.875rem;
+      gap: 0.75rem;
+      min-width: 0;
     }
+
     .nav-wordmark {
       font-size: 0.75rem;
       font-weight: 700;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
+
     .nav-sep {
       width: 1px;
       height: 14px;
       background: var(--muted);
+      flex-shrink: 0;
+      display: none;
     }
+
+    @media (min-width: 480px) {
+      .nav-sep { display: block; }
+    }
+
     .nav-meta {
       font-family: var(--mono);
-      font-size: 0.5625rem;
+      font-size: 0.5rem;
       letter-spacing: 0.12em;
       color: var(--dim);
       text-transform: uppercase;
+      white-space: nowrap;
+      display: none;
     }
+
+    @media (min-width: 480px) {
+      .nav-meta { display: block; }
+    }
+
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: 1.5rem;
+      flex-shrink: 0;
     }
+
+    @media (min-width: 640px) {
+      .nav-right { gap: 2rem; }
+    }
+
     .nav-link {
       font-size: 0.6875rem;
       font-weight: 500;
@@ -96,19 +122,35 @@
       text-transform: uppercase;
       color: var(--dim);
       transition: color 0.2s;
+      display: none;
+      white-space: nowrap;
     }
+
+    @media (min-width: 640px) {
+      .nav-link { display: inline; }
+    }
+
     .nav-link:hover { color: var(--white); }
+
     .nav-cta {
       font-family: var(--font);
-      font-size: 0.6875rem;
+      font-size: 0.625rem;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      padding: 0.5rem 1.125rem;
+      padding: 0.45rem 1rem;
       border: 1px solid var(--muted);
       transition: background 0.2s, color 0.2s, border-color 0.2s;
       cursor: pointer;
+      white-space: nowrap;
+      background: transparent;
+      color: var(--white);
     }
+
+    @media (min-width: 640px) {
+      .nav-cta { padding: 0.5rem 1.125rem; font-size: 0.6875rem; }
+    }
+
     .nav-cta:hover {
       background: var(--white);
       color: var(--black);
@@ -126,18 +168,20 @@
     }
 
     @media (min-width: 960px) {
-      #hero {
-        grid-template-columns: 1fr 1fr;
-      }
+      #hero { grid-template-columns: 1fr 1fr; }
     }
 
     .hero-left {
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 5rem 3rem 5rem;
+      padding: 4rem 1.5rem 4rem;
       border-right: 1px solid var(--line);
       position: relative;
+    }
+
+    @media (min-width: 480px) {
+      .hero-left { padding: 5rem 3rem 5rem; }
     }
 
     @media (min-width: 960px) {
@@ -167,10 +211,11 @@
       width: 20px;
       height: 1px;
       background: var(--dim);
+      flex-shrink: 0;
     }
 
     .hero-headline {
-      font-size: clamp(3rem, 6.5vw, 5.5rem);
+      font-size: clamp(2.75rem, 6.5vw, 5.5rem);
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.0;
@@ -225,12 +270,15 @@
       transition: opacity 0.2s;
       cursor: pointer;
     }
+
     .btn-primary:hover { opacity: 0.85; }
+
     .btn-primary-arrow {
       font-size: 1rem;
       line-height: 1;
       transition: transform 0.2s;
     }
+
     .btn-primary:hover .btn-primary-arrow { transform: translateX(3px); }
 
     .btn-ghost {
@@ -245,6 +293,7 @@
       cursor: pointer;
       padding: 0.8125rem 0;
     }
+
     .btn-ghost:hover { color: var(--white); }
 
     .hero-trust {
@@ -254,6 +303,7 @@
       opacity: 0;
       animation: fadeIn 0.7s ease forwards 0.65s;
     }
+
     .hero-trust-item {
       font-family: var(--mono);
       font-size: 0.5625rem;
@@ -264,12 +314,14 @@
       align-items: center;
       gap: 0.625rem;
     }
+
     .hero-trust-item::before {
       content: '';
       display: inline-block;
       width: 3px;
       height: 3px;
       background: rgba(255,255,255,0.3);
+      flex-shrink: 0;
     }
 
     .hero-right {
@@ -298,6 +350,7 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.2);
     }
+
     .hero-mark-coords.tl { top: -1.5rem; left: 0; }
     .hero-mark-coords.br { bottom: -1.5rem; right: 0; text-align: right; }
 
@@ -315,11 +368,7 @@
     }
 
     @media (min-width: 960px) {
-      .hero-scroll-indicator {
-        left: 3rem;
-        transform: none;
-        bottom: 3rem;
-      }
+      .hero-scroll-indicator { left: 3rem; transform: none; bottom: 3rem; }
     }
 
     .scroll-line {
@@ -339,141 +388,107 @@
       transform: rotate(180deg);
     }
 
-    /* ─── SECTION COMMON ─── */
-    .section-header {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0 3rem;
-      align-items: baseline;
+    /* ─── PRODUCTS ─── */
+    #products {
+      border-top: 1px solid var(--line);
+      padding: 6rem 1.5rem;
+    }
+
+    @media (min-width: 480px) {
+      #products { padding: 8rem 3rem; }
+    }
+
+    @media (min-width: 960px) {
+      #products { padding: 10rem 4rem; }
+    }
+
+    .products-header {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
       margin-bottom: 5rem;
       padding-bottom: 2rem;
       border-bottom: 1px solid var(--line);
     }
 
-    .section-num {
+    @media (min-width: 640px) {
+      .products-header {
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+    }
+
+    .products-header-left {
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+    }
+
+    .products-num {
       font-family: var(--mono);
       font-size: 0.5625rem;
       letter-spacing: 0.2em;
       color: rgba(255,255,255,0.25);
       text-transform: uppercase;
-      padding-top: 0.375rem;
       white-space: nowrap;
     }
 
-    .section-title {
+    .products-title {
       font-size: clamp(1.875rem, 3.5vw, 2.75rem);
       font-weight: 700;
       letter-spacing: -0.025em;
       line-height: 1.1;
     }
 
-    /* ─── PROCESS ─── */
-    #process {
-      padding: 8rem 3rem;
-      border-top: 1px solid var(--line);
+    .products-meta {
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      white-space: nowrap;
+      align-self: flex-end;
     }
 
-    @media (min-width: 960px) {
-      #process { padding: 10rem 4rem; }
+    @media (min-width: 640px) {
+      .products-meta { align-self: baseline; }
     }
 
-    .process-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .process-item {
+    /* ─── PRODUCT GRID ─── */
+    .products-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1rem 4rem;
-      padding: 2.5rem 0;
-      border-bottom: 1px solid var(--line);
-      transition: background 0.3s;
-      cursor: default;
-    }
-
-    @media (min-width: 640px) {
-      .process-item {
-        grid-template-columns: 80px 1fr auto;
-        align-items: center;
-      }
-    }
-
-    .process-item:first-child { border-top: 1px solid var(--line); }
-
-    .process-item:hover .process-n { color: var(--white); }
-
-    .process-n {
-      font-family: var(--mono);
-      font-size: 0.625rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      color: rgba(255,255,255,0.25);
-      transition: color 0.3s;
-      align-self: center;
-    }
-
-    .process-title {
-      font-size: 1.125rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      align-self: center;
-    }
-
-    .process-desc {
-      font-family: var(--mono);
-      font-size: 0.5625rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
-      text-align: right;
-      white-space: nowrap;
-      display: none;
-    }
-
-    @media (min-width: 640px) {
-      .process-desc { display: block; }
-    }
-
-    /* ─── OPERATORS ─── */
-    #operators {
-      padding: 8rem 3rem;
-      border-top: 1px solid var(--line);
-    }
-
-    @media (min-width: 960px) {
-      #operators { padding: 10rem 4rem; }
-    }
-
-    .operators-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
       gap: 1px;
       background: var(--line);
       border: 1px solid var(--line);
     }
 
-    @media (min-width: 600px) {
-      .operators-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (min-width: 900px) {
-      .operators-grid { grid-template-columns: repeat(4, 1fr); }
-    }
-    @media (min-width: 1200px) {
-      .operators-grid { grid-template-columns: repeat(7, 1fr); }
+    @media (min-width: 720px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    .op-card {
+    @media (min-width: 1100px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .product-card {
       background: var(--black);
-      padding: 1.75rem 1.375rem 1.5rem;
+      padding: 2.5rem 2rem;
       position: relative;
       transition: background 0.25s;
       cursor: default;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
       overflow: hidden;
     }
 
-    .op-card::after {
+    .product-card:hover {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .product-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
@@ -481,232 +496,204 @@
       background: var(--white);
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease;
     }
-    .op-card:hover::after { transform: scaleX(1); }
-    .op-card:hover { background: rgba(255,255,255,0.03); }
 
-    .op-id {
+    .product-card:hover::before { transform: scaleX(1); }
+
+    .product-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .product-id {
+      font-family: var(--mono);
+      font-size: 0.4375rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.2);
+      text-transform: uppercase;
+    }
+
+    .product-badge {
       font-family: var(--mono);
       font-size: 0.4375rem;
       letter-spacing: 0.18em;
-      color: rgba(255,255,255,0.18);
       text-transform: uppercase;
-      margin-bottom: 1.25rem;
-      display: block;
-    }
-
-    .op-status {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .op-dot {
-      width: 4px;
-      height: 4px;
-      background: var(--white);
-      opacity: 0.3;
-      transition: opacity 0.2s;
+      padding: 0.25rem 0.5rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.3);
+      transition: border-color 0.2s, color 0.2s;
       flex-shrink: 0;
     }
-    .op-card:hover .op-dot { opacity: 1; }
 
-    .op-status-label {
-      font-family: var(--mono);
-      font-size: 0.4375rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.2);
-      transition: color 0.2s;
+    .product-card:hover .product-badge {
+      border-color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.6);
     }
-    .op-card:hover .op-status-label { color: rgba(255,255,255,0.5); }
 
-    .op-name {
+    .product-badge.active {
+      border-color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.6);
+    }
+
+    .product-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--white);
+      transition: opacity 0.2s;
+    }
+
+    .product-desc {
       font-size: 0.8125rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.3;
-      transition: color 0.2s;
-      letter-spacing: -0.005em;
-    }
-    .op-card:hover .op-name { color: var(--white); }
-
-    /* ─── OWNERSHIP ─── */
-    #ownership {
-      border-top: 1px solid var(--line);
-      padding: 8rem 3rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.45);
+      flex-grow: 1;
     }
 
-    @media (min-width: 960px) {
-      #ownership { padding: 10rem 4rem; }
-    }
-
-    .ownership-layout {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 5rem;
-    }
-
-    @media (min-width: 900px) {
-      .ownership-layout {
-        grid-template-columns: 1fr 1fr;
-        gap: 6rem;
-        align-items: center;
-      }
-    }
-
-    .ownership-list {
+    .product-features {
       list-style: none;
       display: flex;
       flex-direction: column;
-      margin-top: 1rem;
+      gap: 0.625rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
     }
 
-    .own-item {
-      display: grid;
-      grid-template-columns: 24px 1fr auto;
-      align-items: center;
-      gap: 1.25rem;
-      padding: 1.375rem 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .own-item:first-child { border-top: 1px solid var(--line); }
-
-    .own-tick {
-      width: 16px;
-      height: 16px;
-      border: 1px solid rgba(255,255,255,0.25);
-      position: relative;
-      flex-shrink: 0;
-    }
-    .own-tick::after {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      width: 5px;
-      height: 5px;
-      background: var(--white);
-    }
-
-    .own-label {
-      font-size: 0.9375rem;
-      font-weight: 500;
-      letter-spacing: -0.005em;
-    }
-
-    .own-meta {
+    .product-feature {
       font-family: var(--mono);
       font-size: 0.5rem;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: color 0.2s;
+    }
+
+    .product-card:hover .product-feature { color: rgba(255,255,255,0.4); }
+
+    .product-feature::before {
+      content: '';
+      width: 12px;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+      flex-shrink: 0;
+      transition: background 0.2s, width 0.2s;
+    }
+
+    .product-card:hover .product-feature::before {
+      background: rgba(255,255,255,0.4);
+      width: 16px;
+    }
+
+    /* ─── FEATURED (large card spanning 2 cols) ─── */
+    .product-card.featured {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 0;
+      padding: 0;
+    }
+
+    @media (max-width: 719px) {
+      .product-card.featured {
+        flex-direction: column;
+        padding: 2.5rem 2rem;
+        gap: 1.5rem;
+      }
+    }
+
+    .featured-left {
+      flex: 1;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      border-right: 1px solid var(--line);
+    }
+
+    @media (max-width: 719px) {
+      .featured-left { border-right: none; border-bottom: 1px solid var(--line); padding: 0 0 1.5rem; }
+    }
+
+    .featured-right {
+      flex: 0 0 280px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    @media (max-width: 719px) {
+      .featured-right { flex: none; padding: 1.5rem 0 0; }
+    }
+
+    .featured-price {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .price-label {
+      font-family: var(--mono);
+      font-size: 0.4375rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.2);
     }
 
-    .ownership-right {
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-    }
-
-    .ownership-statement {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-    }
-
-    .ownership-subtext {
-      font-size: 0.875rem;
-      font-weight: 300;
-      line-height: 1.9;
-      color: rgba(255,255,255,0.4);
-    }
-
-    .ownership-subtext strong {
-      color: rgba(255,255,255,0.8);
-      font-weight: 500;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    /* ─── CTA ─── */
-    #cta {
-      border-top: 1px solid var(--line);
-      padding: 10rem 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    @media (min-width: 960px) {
-      #cta { padding: 12rem 4rem; }
-    }
-
-    .cta-inner {
-      max-width: 760px;
-    }
-
-    .cta-pre {
-      font-family: var(--mono);
-      font-size: 0.5625rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
-      margin-bottom: 2.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .cta-pre::before {
-      content: '';
-      width: 24px;
-      height: 1px;
-      background: rgba(255,255,255,0.25);
-    }
-
-    .cta-headline {
-      font-size: clamp(2.5rem, 7vw, 6rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.0;
-      margin-bottom: 2.5rem;
-    }
-
-    .cta-headline em {
-      font-style: normal;
-      color: rgba(255,255,255,0.3);
-    }
-
-    .cta-body {
-      font-size: 0.9375rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.4);
-      line-height: 1.85;
-      max-width: 400px;
-      margin-bottom: 3.5rem;
-    }
-
-    .cta-bg-text {
-      position: absolute;
-      right: -0.05em;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: clamp(8rem, 20vw, 18rem);
+    .price-value {
+      font-size: 2.25rem;
       font-weight: 700;
       letter-spacing: -0.04em;
-      color: rgba(255,255,255,0.025);
-      pointer-events: none;
-      user-select: none;
       line-height: 1;
     }
+
+    .price-period {
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.25);
+      margin-top: 0.25rem;
+    }
+
+    .featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--white);
+      color: var(--black);
+      padding: 0.875rem 1.5rem;
+      border: 1px solid var(--white);
+      transition: opacity 0.2s;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+
+    .featured-cta:hover { opacity: 0.85; }
+
+    .featured-cta-arrow {
+      transition: transform 0.2s;
+    }
+
+    .featured-cta:hover .featured-cta-arrow { transform: translateX(3px); }
 
     /* ─── FOOTER ─── */
     footer {
       border-top: 1px solid var(--line);
-      padding: 1.75rem 3rem;
+      padding: 1.75rem 1.5rem;
     }
 
     @media (min-width: 960px) {
@@ -741,11 +728,7 @@
       text-transform: uppercase;
     }
 
-    .footer-pipe {
-      width: 1px;
-      height: 12px;
-      background: var(--muted);
-    }
+    .footer-pipe { width: 1px; height: 12px; background: var(--muted); }
 
     .footer-sub {
       font-family: var(--mono);
@@ -779,16 +762,13 @@
       transform: translateY(20px);
       transition: opacity 0.65s ease, transform 0.65s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
+
+    .reveal.visible { opacity: 1; transform: none; }
     .reveal-d1 { transition-delay: 0.1s; }
     .reveal-d2 { transition-delay: 0.2s; }
     .reveal-d3 { transition-delay: 0.3s; }
     .reveal-d4 { transition-delay: 0.4s; }
 
-    /* ─── SCROLLBAR ─── */
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: var(--black); }
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
@@ -800,12 +780,9 @@
   <nav id="navbar">
     <div class="nav-left">
       <a href="#hero" class="mark">
-        <!-- EMBLEM MARK — geometric BS symbol -->
         <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="40" height="40" fill="#000"/>
-          <!-- outer frame -->
           <rect x="1.5" y="1.5" width="37" height="37" fill="none" stroke="white" stroke-width="0.75"/>
-          <!-- corner registration ticks -->
           <line x1="1.5" y1="8"    x2="1.5" y2="1.5" stroke="white" stroke-width="1.5"/>
           <line x1="1.5" y1="1.5"  x2="8"   y2="1.5" stroke="white" stroke-width="1.5"/>
           <line x1="32"  y1="1.5"  x2="38.5" y2="1.5" stroke="white" stroke-width="1.5"/>
@@ -814,36 +791,30 @@
           <line x1="1.5" y1="38.5" x2="8"   y2="38.5" stroke="white" stroke-width="1.5"/>
           <line x1="38.5" y1="32"  x2="38.5" y2="38.5" stroke="white" stroke-width="1.5"/>
           <line x1="32"  y1="38.5" x2="38.5" y2="38.5" stroke="white" stroke-width="1.5"/>
-          <!-- inner mark: vertical spine -->
           <rect x="10" y="9" width="5" height="22" fill="white"/>
-          <!-- upper block -->
           <rect x="15" y="9" width="14" height="9" fill="white"/>
-          <!-- lower block, offset -->
           <rect x="15" y="22" width="14" height="9" fill="white"/>
-          <!-- diagonal cut between blocks — S-movement -->
-          <line x1="29" y1="18" x2="15" y2="22" stroke="black" stroke-width="2.5"/>
+          <line x1="29" y1="18" x2="15" y2="22" stroke="black" stroke-width="2"/>
         </svg>
       </a>
-      <span class="nav-wordmark">Blacksite</span>
+      <span class="nav-wordmark">BLACKSITE</span>
       <div class="nav-sep"></div>
       <span class="nav-meta">BST-01 // Classified</span>
     </div>
     <div class="nav-right">
-      <a href="#process" class="nav-link">Process</a>
-      <a href="#operators" class="nav-link">Operators</a>
-      <a href="#cta" class="nav-cta">Launch Operation</a>
+      <a href="#products" class="nav-link">Products</a>
+      <a href="#" class="nav-cta">Access</a>
     </div>
   </nav>
 
   <!-- ═══ HERO ═══ -->
   <section id="hero">
-
     <div class="hero-left">
-      <div class="hero-tag">BST-ALPHA-001 &nbsp;/&nbsp; Autonomous Deployment System</div>
+      <div class="hero-tag">BST-ALPHA-001 / Autonomous Deployment System</div>
 
       <h1 class="hero-headline">
         Input an idea.<br/>
-        <em>Output a deployed<br/>company.</em>
+        <em>Output a deployed company.</em>
       </h1>
 
       <p class="hero-sub">
@@ -851,17 +822,17 @@
       </p>
 
       <div class="hero-actions">
-        <a href="#cta" class="btn-primary">
-          Launch Operation
+        <a href="#products" class="btn-primary">
+          View Products
           <span class="btn-primary-arrow">→</span>
         </a>
-        <a href="#process" class="btn-ghost">View Process</a>
+        <a href="#" class="btn-ghost">Launch Operation</a>
       </div>
 
       <div class="hero-trust">
-        <div class="hero-trust-item">First deployment included</div>
-        <div class="hero-trust-item">No lock-in</div>
-        <div class="hero-trust-item">You own everything</div>
+        <div class="hero-trust-item">End-to-end deployment in under 72h</div>
+        <div class="hero-trust-item">Full code ownership. Zero lock-in.</div>
+        <div class="hero-trust-item">14 autonomous operators. One directive.</div>
       </div>
 
       <div class="hero-scroll-indicator">
@@ -872,206 +843,109 @@
 
     <div class="hero-right">
       <div class="hero-mark-wrap">
-        <div class="hero-mark-coords tl">40.7128° N, 74.0060° W</div>
-
-        <!-- Large emblem mark -->
-        <svg width="220" height="220" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <span class="hero-mark-coords tl">X: 0.00 / Y: 0.00</span>
+        <svg width="200" height="200" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="40" height="40" fill="#000"/>
-          <rect x="1.5" y="1.5" width="37" height="37" fill="none" stroke="white" stroke-width="0.75"/>
-          <line x1="1.5" y1="8"    x2="1.5" y2="1.5" stroke="white" stroke-width="1.5"/>
-          <line x1="1.5" y1="1.5"  x2="8"   y2="1.5" stroke="white" stroke-width="1.5"/>
-          <line x1="32"  y1="1.5"  x2="38.5" y2="1.5" stroke="white" stroke-width="1.5"/>
-          <line x1="38.5" y1="1.5" x2="38.5" y2="8"   stroke="white" stroke-width="1.5"/>
-          <line x1="1.5" y1="32"   x2="1.5" y2="38.5" stroke="white" stroke-width="1.5"/>
-          <line x1="1.5" y1="38.5" x2="8"   y2="38.5" stroke="white" stroke-width="1.5"/>
-          <line x1="38.5" y1="32"  x2="38.5" y2="38.5" stroke="white" stroke-width="1.5"/>
-          <line x1="32"  y1="38.5" x2="38.5" y2="38.5" stroke="white" stroke-width="1.5"/>
-          <rect x="10" y="9" width="5" height="22" fill="white"/>
-          <rect x="15" y="9" width="14" height="9" fill="white"/>
-          <rect x="15" y="22" width="14" height="9" fill="white"/>
-          <line x1="29" y1="18" x2="15" y2="22" stroke="black" stroke-width="2.5"/>
+          <rect x="1.5" y="1.5" width="37" height="37" fill="none" stroke="white" stroke-width="0.75" stroke-opacity="0.3"/>
+          <line x1="1.5" y1="8"    x2="1.5" y2="1.5" stroke="white" stroke-width="1.5" stroke-opacity="0.6"/>
+          <line x1="1.5" y1="1.5"  x2="8"   y2="1.5" stroke="white" stroke-width="1.5" stroke-opacity="0.6"/>
+          <line x1="32"  y1="1.5"  x2="38.5" y2="1.5" stroke="white" stroke-width="1.5" stroke-opacity="0.6"/>
+          <line x1="38.5" y1="1.5" x2="38.5" y2="8"   stroke="white" stroke-width="1.5" stroke-opacity="0.6"/>
+          <line x1="1.5" y1="32"   x2="1.5" y2="38.5" stroke="white" stroke-width="1.5" stroke-opacity="0.6"/>
+          <line x1="1.5" y1="38.5" x2="8"   y2="38.5" stroke="white" stroke-width="1.5" stroke-opacity="0.6"/>
+          <line x1="38.5" y1="32"  x2="38.5" y2="38.5" stroke="white" stroke-width="1.5" stroke-opacity="0.6"/>
+          <line x1="32"  y1="38.5" x2="38.5" y2="38.5" stroke="white" stroke-width="1.5" stroke-opacity="0.6"/>
+          <rect x="10" y="9" width="5" height="22" fill="white" fill-opacity="0.9"/>
+          <rect x="15" y="9" width="14" height="9" fill="white" fill-opacity="0.9"/>
+          <rect x="15" y="22" width="14" height="9" fill="white" fill-opacity="0.9"/>
+          <line x1="29" y1="18" x2="15" y2="22" stroke="black" stroke-width="2"/>
         </svg>
-
-        <div class="hero-mark-coords br">Clearance Level IV</div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ═══ PROCESS ═══ -->
-  <section id="process">
-    <div class="section-header reveal">
-      <span class="section-num">Section 02</span>
-      <h2 class="section-title">How BLACKSITE<br/>Works</h2>
-    </div>
-
-    <ul class="process-list">
-      <li class="process-item reveal">
-        <span class="process-n">01 — Initiate</span>
-        <span class="process-title">Describe your idea</span>
-        <span class="process-desc">Input // Brief</span>
-      </li>
-      <li class="process-item reveal reveal-d1">
-        <span class="process-n">02 — Build</span>
-        <span class="process-title">AI operators build and test</span>
-        <span class="process-desc">Autonomous // Active</span>
-      </li>
-      <li class="process-item reveal reveal-d2">
-        <span class="process-n">03 — Deploy</span>
-        <span class="process-title">Deploy to GitHub and Vercel</span>
-        <span class="process-desc">Production // Live</span>
-      </li>
-      <li class="process-item reveal reveal-d3">
-        <span class="process-n">04 — Launch</span>
-        <span class="process-title">Launch with marketing assets</span>
-        <span class="process-desc">Distribution // Market</span>
-      </li>
-    </ul>
-  </section>
-
-  <!-- ═══ OPERATORS ═══ -->
-  <section id="operators">
-    <div class="section-header reveal">
-      <span class="section-num">Section 03</span>
-      <h2 class="section-title">14 Autonomous<br/>Operators</h2>
-    </div>
-
-    <div class="operators-grid">
-      <div class="op-card reveal">
-        <span class="op-id">BST / OP-01</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">Product Architect</div>
-      </div>
-      <div class="op-card reveal reveal-d1">
-        <span class="op-id">BST / OP-02</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">Frontend Engineer</div>
-      </div>
-      <div class="op-card reveal reveal-d2">
-        <span class="op-id">BST / OP-03</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">Backend Engineer</div>
-      </div>
-      <div class="op-card reveal reveal-d1">
-        <span class="op-id">BST / OP-04</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">Database Engineer</div>
-      </div>
-      <div class="op-card reveal reveal-d2">
-        <span class="op-id">BST / OP-05</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">QA Operator</div>
-      </div>
-      <div class="op-card reveal reveal-d3">
-        <span class="op-id">BST / OP-06</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">Security Auditor</div>
-      </div>
-      <div class="op-card reveal reveal-d1">
-        <span class="op-id">BST / OP-07</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">Deployment Operator</div>
-      </div>
-      <div class="op-card reveal reveal-d2">
-        <span class="op-id">BST / OP-08</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">DevOps Agent</div>
-      </div>
-      <div class="op-card reveal reveal-d3">
-        <span class="op-id">BST / OP-09</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">GitHub Agent</div>
-      </div>
-      <div class="op-card reveal">
-        <span class="op-id">BST / OP-10</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">Vercel Agent</div>
-      </div>
-      <div class="op-card reveal reveal-d1">
-        <span class="op-id">BST / OP-11</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">Design Operator</div>
-      </div>
-      <div class="op-card reveal reveal-d2">
-        <span class="op-id">BST / OP-12</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">Content Operator</div>
-      </div>
-      <div class="op-card reveal reveal-d3">
-        <span class="op-id">BST / OP-13</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">X Launch Agent</div>
-      </div>
-      <div class="op-card reveal reveal-d1">
-        <span class="op-id">BST / OP-14</span>
-        <div class="op-status"><div class="op-dot"></div><span class="op-status-label">Active</span></div>
-        <div class="op-name">LinkedIn Launch Agent</div>
+        <span class="hero-mark-coords br">BLACKSITE / MK-I</span>
       </div>
     </div>
   </section>
 
-  <!-- ═══ OWNERSHIP ═══ -->
-  <section id="ownership">
-    <div class="section-header reveal">
-      <span class="section-num">Section 04</span>
-      <h2 class="section-title">You Own<br/>Everything.</h2>
+  <!-- ═══ PRODUCTS ═══ -->
+  <section id="products">
+    <div class="products-header reveal">
+      <div class="products-header-left">
+        <span class="products-num">BST / PD</span>
+        <h2 class="products-title">Products</h2>
+      </div>
+      <span class="products-meta">3 Active Deployments</span>
     </div>
 
-    <div class="ownership-layout">
-      <ul class="ownership-list">
-        <li class="own-item reveal">
-          <div class="own-tick"></div>
-          <span class="own-label">GitHub Repository</span>
-          <span class="own-meta">Yours</span>
-        </li>
-        <li class="own-item reveal reveal-d1">
-          <div class="own-tick"></div>
-          <span class="own-label">Source Code</span>
-          <span class="own-meta">Yours</span>
-        </li>
-        <li class="own-item reveal reveal-d2">
-          <div class="own-tick"></div>
-          <span class="own-label">Infrastructure</span>
-          <span class="own-meta">Yours</span>
-        </li>
-        <li class="own-item reveal reveal-d3">
-          <div class="own-tick"></div>
-          <span class="own-label">Deployments</span>
-          <span class="own-meta">Yours</span>
-        </li>
-      </ul>
+    <div class="products-grid">
 
-      <div class="ownership-right reveal reveal-d2">
-        <p class="ownership-subtext">
-          <strong>BLACKSITE never owns your product.</strong>
-          No lock-in.<br/>
-          No platform dependency.<br/>
-          Every asset, every line of code, every server — transferred to you at launch. Permanently.
+      <!-- FEATURED: BLACKSITE CORE -->
+      <div class="product-card featured reveal">
+        <div class="featured-left">
+          <div class="product-card-top">
+            <span class="product-id">BST / PD-01</span>
+            <span class="product-badge active">Live</span>
+          </div>
+          <div class="product-name">BLACKSITE CORE</div>
+          <p class="product-desc">
+            The complete autonomous deployment pipeline. Describe your product in plain language — BLACKSITE translates it into a functioning company: codebase, infrastructure, domain, and launch. No engineers required.
+          </p>
+          <ul class="product-features">
+            <li class="product-feature">Full-stack application generation</li>
+            <li class="product-feature">Autonomous infrastructure provisioning</li>
+            <li class="product-feature">Domain + DNS + SSL configured</li>
+            <li class="product-feature">Production deployment on Vercel / Railway</li>
+            <li class="product-feature">Source code transferred to your GitHub</li>
+          </ul>
+        </div>
+        <div class="featured-right">
+          <div class="featured-price">
+            <span class="price-label">Starting at</span>
+            <span class="price-value">$1,200</span>
+            <span class="price-period">Per operation</span>
+          </div>
+          <a href="#" class="featured-cta">
+            Launch Operation
+            <span class="featured-cta-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- BLACKSITE OPS -->
+      <div class="product-card reveal reveal-d1">
+        <div class="product-card-top">
+          <span class="product-id">BST / PD-02</span>
+          <span class="product-badge">Available</span>
+        </div>
+        <div class="product-name">BLACKSITE OPS</div>
+        <p class="product-desc">
+          Ongoing operator coverage. After your product launches, 14 autonomous agents stay deployed — monitoring, iterating, and expanding your product on directive.
         </p>
-        <p class="ownership-subtext">
-          We operate. You own. That is the agreement.
-        </p>
+        <ul class="product-features">
+          <li class="product-feature">14 active AI operators post-launch</li>
+          <li class="product-feature">Weekly automated feature iterations</li>
+          <li class="product-feature">Bug triage + hotfix deployment</li>
+          <li class="product-feature">Performance monitoring + alerting</li>
+        </ul>
       </div>
-    </div>
-  </section>
 
-  <!-- ═══ CTA ═══ -->
-  <section id="cta">
-    <div class="cta-inner">
-      <div class="cta-pre reveal">Final Directive</div>
-      <h2 class="cta-headline reveal reveal-d1">
-        Stop Building.<br/>
-        <em>Start Launching.</em>
-      </h2>
-      <p class="cta-body reveal reveal-d2">
-        Most products never reach deployment. BLACKSITE exists to eliminate everything between an idea and a launch.
-      </p>
-      <a href="#" class="btn-primary reveal reveal-d3">
-        Launch Your First Operation
-        <span class="btn-primary-arrow">→</span>
-      </a>
+      <!-- BLACKSITE CLASSIFIED -->
+      <div class="product-card reveal reveal-d2">
+        <div class="product-card-top">
+          <span class="product-id">BST / PD-03</span>
+          <span class="product-badge">By Request</span>
+        </div>
+        <div class="product-name">BLACKSITE CLASSIFIED</div>
+        <p class="product-desc">
+          Custom deployment architecture for high-stakes products. Private operator networks, air-gapped infrastructure, and non-disclosure agreements as a default condition of engagement.
+        </p>
+        <ul class="product-features">
+          <li class="product-feature">Private AI operator cluster</li>
+          <li class="product-feature">Air-gapped or on-prem deployment</li>
+          <li class="product-feature">NDA-first engagement</li>
+          <li class="product-feature">Direct access to principal operators</li>
+        </ul>
+      </div>
+
     </div>
-    <div class="cta-bg-text" aria-hidden="true">BST</div>
   </section>
 
   <!-- FOOTER -->
@@ -1087,7 +961,6 @@
   </footer>
 
   <script>
-    // Navbar
     const nav = document.getElementById('navbar');
     let ticking = false;
     window.addEventListener('scroll', () => {
@@ -1100,7 +973,6 @@
       }
     }, { passive: true });
 
-    // Reveal on scroll
     const revealEls = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -1109,10 +981,9 @@
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => io.observe(el));
 
-    // Smooth anchor scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const t = document.querySelector(a.getAttribute('href'));
