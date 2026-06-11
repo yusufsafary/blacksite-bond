@@ -40,34 +40,22 @@ OPERATION STATUS: READY TO EXECUTE
 function simulateOutput(idea) {
   const ideaLower = idea.toLowerCase();
   const words = idea.split(' ').filter(w => w.length > 3);
-  
-  // Derive product name from key nouns
   const stopWords = new Set(['with','that','for','and','the','from','about','into','using','based','a','an']);
   const keyWords = words.filter(w => !stopWords.has(w.toLowerCase())).slice(0, 2);
   const productName = keyWords.map(w => w.toUpperCase().replace(/[^A-Z]/g, '')).join('') || 'NEXUS';
-
-  // Detect category
   const isMarketplace = /market|sell|buy|vendor|product|shop|store/.test(ideaLower);
   const isSaaS = /saas|tool|platform|dashboard|manage|track|analytics|automat/.test(ideaLower);
-  const isSocial = /social|community|connect|network|forum|chat|message/.test(ideaLower);
   const isAI = /ai|ml|generat|openai|llm|model|predict|smart/.test(ideaLower);
-  
   const stack = isMarketplace
     ? { fe: 'Next.js 15 + Tailwind', be: 'Supabase', db: 'PostgreSQL', pay: 'Stripe Connect', host: 'Vercel + Supabase' }
-    : isSaaS
-    ? { fe: 'Next.js 15 + Tailwind', be: 'Express + Prisma', db: 'PostgreSQL', pay: 'Stripe', host: 'Vercel + Railway' }
     : isAI
     ? { fe: 'Next.js 15 + Tailwind', be: 'FastAPI + Python', db: 'PostgreSQL + Pinecone', pay: 'Stripe', host: 'Vercel + Fly.io' }
-    : { fe: 'Next.js 15 + Tailwind', be: 'Supabase Edge Functions', db: 'PostgreSQL', pay: 'Stripe', host: 'Vercel + Supabase' };
-
+    : { fe: 'Next.js 15 + Tailwind', be: 'Express + Prisma', db: 'PostgreSQL', pay: 'Stripe', host: 'Vercel + Railway' };
   const modules = isMarketplace
-    ? ['Seller onboarding + verification', 'Product listings + rich media', 'Buyer discovery + search filters', 'Cart + checkout + payout splits', 'Orders + shipping + tracking']
-    : isSaaS
-    ? ['User auth + team management', 'Core product dashboard', 'Data ingestion + processing', 'Reporting + analytics engine', 'API + webhook integrations']
+    ? ['Seller onboarding + verification','Product listings + rich media','Buyer discovery + search filters','Cart + checkout + payout splits','Orders + shipping + tracking']
     : isAI
-    ? ['AI pipeline + model orchestration', 'User authentication + usage limits', 'Prompt management + history', 'Output formatting + export', 'Billing + usage metering']
-    : ['User authentication + profiles', 'Core feature interface', 'Data management + storage', 'Notifications + activity feed', 'Settings + integrations'];
-
+    ? ['AI pipeline + model orchestration','User authentication + usage limits','Prompt management + history','Output formatting + export','Billing + usage metering']
+    : ['User auth + team management','Core product dashboard','Data ingestion + processing','Reporting + analytics engine','API + webhook integrations'];
   return `BLACKSITE — OPERATION INITIATED
 ────────────────────────────────
 INPUT PARSED: ${idea.substring(0, 48)}${idea.length > 48 ? '...' : ''}
@@ -110,30 +98,22 @@ module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
-
   const { idea } = req.body || {};
-  if (!idea || idea.trim().length < 3) {
-    return res.status(400).json({ error: 'Idea required' });
-  }
+  if (!idea || idea.trim().length < 3) return res.status(400).json({ error: 'Idea required' });
 
-  const apiKey = process.env.OPENAI_API_KEY;
-
-  if (apiKey) {
+  const token = process.env.GITHUB_TOKEN;
+  if (token) {
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const response = await fetch('https://models.inference.ai.azure.com/chat/completions', {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: 'gpt-4o-mini',
           messages: [
             { role: 'system', content: SYSTEM_PROMPT },
-            { role: 'user', content: idea }
+            { role: 'user', content: idea.trim() }
           ],
           max_tokens: 700,
           temperature: 0.7
@@ -143,12 +123,9 @@ module.exports = async function handler(req, res) {
       if (data.choices?.[0]?.message?.content) {
         return res.json({ output: data.choices[0].message.content });
       }
-    } catch (e) {
-      // Fall through to simulation
-    }
+    } catch (e) { /* fall through */ }
   }
 
-  // Simulation mode
-  await new Promise(r => setTimeout(r, 1200)); // realistic delay
+  await new Promise(r => setTimeout(r, 1200));
   return res.json({ output: simulateOutput(idea.trim()) });
 };
