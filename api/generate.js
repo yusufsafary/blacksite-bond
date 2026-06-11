@@ -1,6 +1,12 @@
-const SYSTEM_PROMPT = `You are BLACKSITE's autonomous product synthesis engine. Given a product idea, generate a concise operational brief in this exact format — no markdown, no extra text, only this structure:
+const SYSTEM_PROMPT = `You are BLACKSITE's autonomous product synthesis engine. Given a product idea, generate a concise operational brief in this exact format. Follow the structure exactly with no deviations.
 
-BLACKSITE — OPERATION INITIATED
+CRITICAL OUTPUT RULES:
+- Do NOT use em-dashes (—) anywhere in your output. They are forbidden.
+- Do NOT use en-dashes as separators.
+- Use a colon (:) or forward slash (/) or arrow (->) to separate items. Never a dash used as a separator.
+- No markdown, no bullet symbols other than the tree characters shown, no extra commentary.
+
+BLACKSITE // OPERATION INITIATED
 ────────────────────────────────
 INPUT PARSED: [summarize the idea in 5-8 words]
 COMPLEXITY: [Low / Medium / High]
@@ -8,13 +14,13 @@ COMPLEXITY: [Low / Medium / High]
 PRODUCT IDENTITY
 └── Name: [SHORT MEMORABLE PRODUCT NAME in caps]
 └── Domain: [suggested domain.com]
-└── Tagline: [one sharp sentence]
+└── Tagline: [one sharp sentence, no em-dashes]
 
 TECH STACK SELECTED
 └── Frontend: [framework + styling]
 └── Backend: [service or framework]
 └── Database: [db choice]
-└── Payments: [payment service if needed, else "N/A"]
+└── Payments: [payment service if needed, else N/A]
 └── Hosting: [hosting]
 
 CORE MODULES
@@ -25,13 +31,13 @@ CORE MODULES
 └── [05] [module name]: [one line description]
 
 DEPLOYMENT ESTIMATE
-└── Phase 1: [timeframe] — [scope]
-└── Phase 2: [timeframe] — [scope]
+└── Phase 1: [timeframe] -> [scope]
+└── Phase 2: [timeframe] -> [scope]
 └── Total: [X]h to production
 
 BLACKSITE ASSESSMENT
 └── Viability: [LOW / MEDIUM / HIGH / CRITICAL]
-└── Revenue potential: [$X–$Y MRR at 12 months]
+└── Revenue potential: [$X to $Y MRR at 12 months]
 └── Recommended plan: [BLACKSITE CORE / OPS / CLASSIFIED]
 
 OPERATION STATUS: READY TO EXECUTE
@@ -56,7 +62,7 @@ function simulateOutput(idea) {
     : isAI
     ? ['AI pipeline + model orchestration','User authentication + usage limits','Prompt management + history','Output formatting + export','Billing + usage metering']
     : ['User auth + team management','Core product dashboard','Data ingestion + processing','Reporting + analytics engine','API + webhook integrations'];
-  return `BLACKSITE — OPERATION INITIATED
+  return `BLACKSITE // OPERATION INITIATED
 ────────────────────────────────
 INPUT PARSED: ${idea.substring(0, 48)}${idea.length > 48 ? '...' : ''}
 COMPLEXITY: ${isAI || isMarketplace ? 'High' : isSaaS ? 'Medium' : 'Medium'}
@@ -81,14 +87,14 @@ CORE MODULES
 └── [05] ${modules[4]}
 
 DEPLOYMENT ESTIMATE
-└── Phase 1: 48h — Core architecture + authentication
-└── Phase 2: 24h — Feature completion + production deploy
+└── Phase 1: 48h -> Core architecture + authentication
+└── Phase 2: 24h -> Feature completion + production deploy
 └── Total: 72h to production
 
 BLACKSITE ASSESSMENT
 └── Viability: HIGH
-└── Revenue potential: $12K–$60K MRR at 12 months
-└── Recommended plan: BLACKSITE CORE — $1,200
+└── Revenue potential: $12K to $60K MRR at 12 months
+└── Recommended plan: BLACKSITE CORE / $1,200
 
 OPERATION STATUS: READY TO EXECUTE
 ────────────────────────────────`;
