@@ -510,7 +510,7 @@
         renderHistory();
       } catch (err) {
         loadingBar.classList.remove('active');
-        terminalBody.textContent = 'CONNECTION ERROR — Unable to reach BLACKSITE operators.\nPlease retry your operation.';
+        terminalBody.textContent = 'CONNECTION ERROR: Unable to reach BLACKSITE operators.\nPlease retry your operation.';
         outputSection.classList.add('visible');
       } finally {
         isRunning = false;
